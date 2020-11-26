@@ -1,0 +1,194 @@
+type FormControlType = 'checkbox' | 'date' | 'email' | 'phone' | 'radio' | 'select' | 'text';
+
+/**
+ * Metadata required to render Angular form controls dynamically.
+ */
+export interface AbstractFormControlMetadata {
+    /**
+     * ID of the control.
+     */
+    id: string;
+
+    /**
+     * Type of the control.
+     */
+    type: FormControlType;
+
+    /**
+     * Label for the control.
+     */
+    label: string;
+
+    /**
+     * Help text for the control.
+     */
+    helpText?: string;
+
+    /**
+     * Whether the user is required to provide a value in the control.
+     */
+    required: boolean;
+
+    /**
+     * Initial value of the control.
+     */
+    initialValue?: string;
+}
+
+export type FormControlMetadata =
+    | CheckboxControlMetadata
+    | DateControlMetadata
+    | EmailControlMetadata
+    | PhoneControlMetadata
+    | RadioControlMetadata
+    | SelectControlMetadata
+    | TextControlMetadata;
+
+/**
+ * A checkbox input control.
+ */
+export interface CheckboxControlMetadata extends AbstractFormControlMetadata {
+    type: 'checkbox';
+
+    /**
+     * Whether the checkbox is checked by default.
+     */
+    checked?: boolean;
+}
+
+/**
+ * A date input control.
+ */
+export interface DateControlMetadata extends AbstractFormControlMetadata {
+    type: 'date';
+
+    /**
+     * ISO date string for the earliest allowed date.
+     * @example "2020-10-25"
+     */
+    min?: string;
+
+    /**
+     * ISO date string for the latest allowed date.
+     * @example "2020-11-25"
+     */
+    max?: string;
+}
+
+/**
+ * An email input control.
+ */
+export interface EmailControlMetadata extends AbstractFormControlMetadata {
+    type: 'email';
+
+    /**
+     * Placeholder text for the input.
+     * @example "email@example.com"
+     */
+    placeholder?: string;
+}
+
+/**
+ * A phone input control.
+ */
+export interface PhoneControlMetadata extends AbstractFormControlMetadata {
+    type: 'phone';
+}
+
+/**
+ * A radio input control.
+ */
+export interface RadioControlMetadata extends AbstractFormControlMetadata {
+    type: 'radio';
+
+    /**
+     * Value of the radio option.
+     */
+    value: string;
+
+    /**
+     * Whether the radio option is selected by default.
+     */
+    checked?: string;
+}
+
+/**
+ * A select input control.
+ */
+export interface SelectControlMetadata extends AbstractFormControlMetadata {
+    type: 'select';
+
+    /**
+     * Options available to select from the control.
+     */
+    options: (SelectOption | OptGroup)[];
+}
+
+/**
+ * An option for a select control.
+ */
+type SelectOption = string | Option;
+
+/**
+ * An option for a select control.
+ */
+interface Option {
+    /**
+     * Text content of the option.
+     */
+    label: string;
+
+    /**
+     * Value of the option. If omitted, `label` will be used as the value.
+     */
+    value?: string;
+
+    /**
+     * Whether the option is selected by default.
+     */
+    selected?: boolean;
+
+    /**
+     * Whether the option is disabled by default.
+     */
+    disabled?: boolean;
+}
+
+/**
+ * A group of related options within a select control.
+ */
+interface OptGroup {
+    /**
+     * Text content of the option group.
+     */
+    label: string;
+
+    /**
+     * Options within the option group.
+     */
+    options: SelectOption;
+
+    /**
+     * Whether the option group is disabled.
+     */
+    disabled?: boolean;
+}
+
+/**
+ * A basic text input control.
+ */
+export interface TextControlMetadata extends AbstractFormControlMetadata {
+    type: 'text';
+    placeholder?: string;
+}
+
+export function isControlOfType(c: AbstractFormControlMetadata, type: 'checkbox'): c is CheckboxControlMetadata;
+export function isControlOfType(c: AbstractFormControlMetadata, type: 'date'): c is DateControlMetadata;
+export function isControlOfType(c: AbstractFormControlMetadata, type: 'email'): c is EmailControlMetadata;
+export function isControlOfType(c: AbstractFormControlMetadata, type: 'phone'): c is PhoneControlMetadata;
+export function isControlOfType(c: AbstractFormControlMetadata, type: 'radio'): c is RadioControlMetadata;
+export function isControlOfType(c: AbstractFormControlMetadata, type: 'select'): c is SelectControlMetadata;
+export function isControlOfType(c: AbstractFormControlMetadata, type: 'text'): c is TextControlMetadata;
+export function isControlOfType(c: AbstractFormControlMetadata, type: FormControlType): boolean {
+    return c.type === type;
+}
