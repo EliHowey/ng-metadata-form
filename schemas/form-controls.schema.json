@@ -1,0 +1,178 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://elihowey.com/schemas/form-controls.schema.json",
+    "title": "Angular Form Controls",
+    "description": "Metadata required to render Angular form controls dynamically.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "ID of the control.",
+            "type": "string"
+        },
+        "type": {
+            "description": "Type of the control.",
+            "type": "string"
+        },
+        "label": {
+            "description": "Label for the control.",
+            "type": "string"
+        },
+        "helpText": {
+            "description": "Help text for the control.",
+            "type": "string"
+        },
+        "required": {
+            "description": "Whether the user is required to provide a value in the control.",
+            "type": "boolean"
+        },
+        "initialValue": {
+            "description": "Initial value of the control.",
+            "type": "string"
+        }
+    },
+    "required": ["id", "type", "label", "required"],
+    "oneOf": [
+        { "$ref": "#/definitions/checkbox" },
+        { "$ref": "#/definitions/date" },
+        { "$ref": "#/definitions/email" },
+        { "$ref": "#/definitions/phone" },
+        { "$ref": "#/definitions/radio" },
+        { "$ref": "#/definitions/select" },
+        { "$ref": "#/definitions/text" }
+    ],
+    "definitions": {
+        "checkbox": {
+            "description": "A checkbox input control.",
+            "properties": {
+                "type": {
+                    "const": "checkbox"
+                },
+                "checked": {
+                    "description": "Whether the checkbox is checked by default.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "date": {
+            "description": "A date input control.",
+            "properties": {
+                "type": {
+                    "const": "date"
+                },
+                "min": {
+                    "description": "ISO date string for the earliest allowed date.",
+                    "type": "string",
+                    "examples": ["2020-10-25"]
+                },
+                "max": {
+                    "description": "ISO date string for the latest allowed date.",
+                    "type": "string",
+                    "examples": ["2020-11-25"]
+                }
+            }
+        },
+        "email": {
+            "description": "An email input control.",
+            "properties": {
+                "type": {
+                    "const": "email"
+                },
+                "placeholder": {
+                    "description": "Placeholder text for the input.",
+                    "type": "string",
+                    "examples": ["email@example.com"]
+                }
+            }
+        },
+        "phone": {
+            "description": "A phone input control.",
+            "properties": {
+                "type": {
+                    "const": "phone"
+                }
+            }
+        },
+        "radio": {
+            "description": "A radio input control.",
+            "properties": {
+                "type": {
+                    "const": "radio"
+                },
+                "value": {
+                    "description": "Value of the radio option.",
+                    "type": "string"
+                },
+                "checked": {
+                    "description": "Whether the radio option is selected by default.",
+                    "type": "boolean"
+                }
+            },
+            "required": ["value"]
+        },
+        "select": {
+            "description": "A select input control.",
+            "properties": {
+                "type": {
+                    "const": "select"
+                },
+                "options": {
+                    "description": "Options available to select from the control.",
+                    "oneOf": [{ "type": "string" }, { "$ref": "#/definitions/option" }]
+                }
+            }
+        },
+        "option": {
+            "description": "An option for a select control.",
+            "type": "object",
+            "properties": {
+                "label": {
+                    "description": "Text content of the option.",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "Value of the option. If omitted, `label` will be used as the value.",
+                    "type": "string"
+                },
+                "selected": {
+                    "description": "Whether the option is selected by default.",
+                    "type": "boolean"
+                },
+                "disabled": {
+                    "description": "Whether the option is disabled by default.",
+                    "type": "boolean"
+                }
+            },
+            "required": ["label"]
+        },
+        "optgroup": {
+            "description": "A group of related options within a select control.",
+            "type": "object",
+            "properties": {
+                "label": {
+                    "description": "Text content of the optoin group.",
+                    "type": "string"
+                },
+                "options": {
+                    "description": "Options within the option group.",
+                    "oneOf": [{ "type": "string" }, { "$ref": "#/definitions/option" }]
+                },
+                "disabled": {
+                    "description": "Whether the option group is disabled.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "text": {
+            "description": "A basic text input control (`<input type=\"text\">`).",
+            "properties": {
+                "type": {
+                    "const": "text"
+                },
+                "placeholder": {
+                    "description": "Placeholder text for the input.",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
