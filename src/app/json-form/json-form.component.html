@@ -1,0 +1,6 @@
+<form [formGroup]="form">
+    <label for="json">Metadata (JSON):</label>
+    <textarea formControlName="json" id="json" cols="80" rows="10" (input)="processInput($event)"></textarea>
+
+    <!-- <button type="submit">Submit</button> -->
+</form>
