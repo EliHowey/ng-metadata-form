@@ -1,0 +1,15 @@
+<fieldset *ngIf="question.controls.length > 1">
+    <legend>{{ question.questionText }}</legend>
+
+    <ng-container *ngFor="let control of question.controls">
+        <app-dynamic-form-control [control]="control"></app-dynamic-form-control>
+    </ng-container>
+</fieldset>
+
+<ng-container *ngIf="question.controls.length === 1">
+    <app-dynamic-form-control [control]="question.controls[0]"></app-dynamic-form-control>
+</ng-container>
+
+<ng-container *ngIf="!question.controls || question.controls.length === 0">
+    Error: No controls to display
+</ng-container>

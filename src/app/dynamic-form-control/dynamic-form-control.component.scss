@@ -1,0 +1,17 @@
+:host {
+    display: block;
+}
+
+.unknown-control {
+    --json-display-background: var(--color-error);
+    --json-display-text: white;
+
+    padding: 0.5em;
+    border: 2px solid var(--color-error);
+    border-radius: 4px;
+    background-color: rgba(var(--color-error-rgb), 0.125);
+}
+
+app-json-display {
+    margin-top: 0.5em;
+}

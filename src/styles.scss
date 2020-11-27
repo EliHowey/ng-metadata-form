@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --font-stack-base: system, -apple-system, BlinkMacSystemFont, 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica,
+        Ubuntu, Roboto, Noto, 'Segoe UI', Arial, sans-serif;
+    --font-stack-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+    --color-warning: #f9cc1e;
+
+    --color-error-rgb: 164, 7, 7;
+    --color-error: rgb(var(--color-error-rgb));
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: var(--font-stack-base);
+}
+
+pre,
+code {
+    font-family: var(--font-stack-mono);
+}

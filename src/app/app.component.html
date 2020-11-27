@@ -1,7 +1,25 @@
-<app-json-form (jsonParsed)="onJsonParsed($event)" (jsonParseError)="onJsonError($event)"></app-json-form>
+<h1>Dynamic Forms from Metadata</h1>
 
-<p *ngIf="jsonOutput">JSON: {{ jsonOutput }}</p>
-<p *ngIf="metadata">{{ metadata.getRawValue() }}</p>
+<form [formGroup]="renderForm" (ngSubmit)="onChangeRender()">
+    <fieldset>
+        <legend>Render:</legend>
+
+        <input type="radio" formControlName="type" id="type-all" value="all-controls" />
+        <label for="type-all">All controls</label>
+
+        <input type="radio" formControlName="type" id="type-one-q" value="one-question" />
+        <label for="type-one-q">One question</label>
+
+        <input type="radio" formControlName="type" id="type-one-s" value="one-section" />
+        <label for="type-one-s">One section</label>
+    </fieldset>
+
+    <button type="submit">Render</button>
+</form>
+
+<!-- <pre *ngIf="metadata"><code>{{ metadata | json }}</code></pre> -->
 <p *ngIf="error" style="color: red">{{ error }}</p>
+
+<app-dynamic-form *ngIf="metadata" [metadata]="metadata"></app-dynamic-form>
 
 <router-outlet></router-outlet>
