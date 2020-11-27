@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "title": "Angular Form Metadata",
-    "description": "Metadata required to render an Angular form dynamically.",
+    "title": "Form Metadata",
+    "description": "Metadata required to render an HTML form dynamically.",
     "type": "object",
     "properties": {
         "id": {
@@ -12,24 +12,13 @@
             "description": "Contents of the form. This can be a series of form questions or sections.",
             "type": "array",
             "items": {
-                "$ref": "#/definitions/formContent"
+                "oneOf": [{ "$ref": "#/definitions/formQuestion" }, { "$ref": "#/definitions/formSection" }]
             },
             "minItems": 1
         }
     },
     "required": ["contents"],
     "definitions": {
-        "formContent": {
-            "description": "Contents of a form, which can be either a form section or a form question.",
-            "type": "object",
-            "properties": {
-                "type": {
-                    "description": "Type of the contents.",
-                    "oneOf": [{ "const": "section" }, { "const": "question" }]
-                }
-            },
-            "oneOf": [{ "$ref": "#/definitions/formQuestion" }, { "$ref": "#/definitions/formSection" }]
-        },
         "formSection": {
             "description": "A section of a dynamic Angular form.",
             "type": "object",
@@ -49,7 +38,7 @@
                     "description": "Contents of the form section.",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/formContent"
+                        "oneOf": [{ "$ref": "#/definitions/formQuestion" }, { "$ref": "#/definitions/formSection" }]
                     },
                     "minItems": 1
                 }
@@ -263,7 +252,8 @@
                     "description": "Whether the option group is disabled.",
                     "type": "boolean"
                 }
-            }
+            },
+            "required": ["label", "options"]
         },
         "text": {
             "description": "A basic text input control (`<input type=\"text\">`).",

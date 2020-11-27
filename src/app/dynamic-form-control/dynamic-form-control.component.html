@@ -19,6 +19,29 @@
         <input type="tel" [attr.id]="control.id" />
     </ng-container>
 
+    <ng-container *ngSwitchCase="'select'">
+        <label [attr.htmlFor]="control.id">{{ control.label }}</label>
+        <select [attr.id]="control.id">
+            <ng-container *ngFor="let option of $any(control).options">
+                <!-- String options -->
+                <option *ngIf="!option.options && !option.value">{{ option }}</option>
+
+                <!-- Options with a different display value -->
+                <option *ngIf="option.value" [attr.value]="option.value">{{ option.label }}</option>
+
+                <!-- Option groups -->
+                <optgroup *ngIf="option.options" [attr.label]="option.label">
+                    <ng-container *ngFor="let groupOption of $any(option).options">
+                        <option *ngIf="!groupOption.value">{{ groupOption }}</option>
+                        <option *ngIf="groupOption.value" [attr.value]="groupOption.value">
+                            {{ groupOption.label }}
+                        </option>
+                    </ng-container>
+                </optgroup>
+            </ng-container>
+        </select>
+    </ng-container>
+
     <ng-container *ngSwitchCase="'text'">
         <label [attr.htmlFor]="control.id">{{ control.label }}</label>
         <input type="text" [attr.id]="control.id" [attr.placeholder]="$any(control).placeholder" />
@@ -27,7 +50,7 @@
     <ng-container *ngSwitchDefault>
         <div class="unknown-control">
             Unknown control: <code>{{ control.id }}</code>
-            <app-json-display [title]="'Metadata (JSON)'" [json]="control"></app-json-display>
+            <app-json-display [title]="'Metadata'" [json]="control"></app-json-display>
         </div>
     </ng-container>
 </ng-container>

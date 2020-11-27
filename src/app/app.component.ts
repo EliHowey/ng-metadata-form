@@ -35,7 +35,9 @@ export class AppComponent {
         try {
             const type = this.renderForm.get('type')?.value;
             this.metadata = this.metadataService.getMetadata(JSON_FILES[type]);
+            this.error = '';
         } catch (error) {
+            this.metadata = null;
             this.error = error;
         }
     }

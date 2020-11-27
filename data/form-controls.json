@@ -76,6 +76,37 @@
         },
         {
             "type": "question",
+            "id": "q-select",
+            "required": true,
+            "questionText": "Select Question",
+            "controls": [
+                {
+                    "type": "select",
+                    "id": "c-select",
+                    "label": "Select control",
+                    "required": true,
+                    "options": [
+                        "String option",
+                        {
+                            "label": "Option label",
+                            "value": "option-value-1"
+                        },
+                        {
+                            "label": "Option group",
+                            "options": [
+                                "String option",
+                                {
+                                    "label": "Option label",
+                                    "value": "option-value-2"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "question",
             "id": "q-text",
             "required": true,
             "questionText": "Text Question",

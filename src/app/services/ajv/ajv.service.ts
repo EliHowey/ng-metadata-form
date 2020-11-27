@@ -8,7 +8,7 @@ export class AjvService {
     private ajv: Ajv;
 
     constructor() {
-        this.ajv = new Ajv({ allErrors: true });
+        this.ajv = new Ajv({ allErrors: true, allowUnionTypes: true });
     }
 
     validate<T>(schema: AnySchemaObject, data: any): T {
