@@ -7,7 +7,13 @@
         </ng-container>
 
         <ng-container *ngIf="!isSectionContent(content)">
-            <app-dynamic-form-question [question]="content"></app-dynamic-form-question>
+            <ng-container *ngIf="isQuestionContent(content)">
+                <app-dynamic-form-question [question]="content"></app-dynamic-form-question>
+            </ng-container>
+
+            <ng-container *ngIf="!isQuestionContent(content)">
+                <app-dynamic-form-control [control]="content"></app-dynamic-form-control>
+            </ng-container>
         </ng-container>
     </ng-container>
 </form>

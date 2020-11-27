@@ -18,15 +18,16 @@ export interface FormMetadata {
 /**
  * Contents of a form, which can be either a form section or a form question.
  */
-export type FormContentMetadata = FormSectionMetadata | FormQuestionMetadata;
+export type FormContentMetadata = FormSectionMetadata | FormQuestionMetadata | FormControlMetadata;
 
 type BaseFormContents = {
-    type: 'section' | 'question';
+    type: 'section' | 'question' | 'control';
 };
 
 export function formContentIsType(c: FormContentMetadata, type: 'section'): c is FormSectionMetadata;
 export function formContentIsType(c: FormContentMetadata, type: 'question'): c is FormQuestionMetadata;
-export function formContentIsType(c: FormContentMetadata, type: 'section' | 'question'): boolean {
+export function formContentIsType(c: FormContentMetadata, type: 'control'): c is FormControlMetadata;
+export function formContentIsType(c: FormContentMetadata, type: 'section' | 'question' | 'control'): boolean {
     return c.type === type;
 }
 

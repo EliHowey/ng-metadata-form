@@ -12,7 +12,17 @@
             "description": "Contents of the form. This can be a series of form questions or sections.",
             "type": "array",
             "items": {
-                "oneOf": [{ "$ref": "#/definitions/formQuestion" }, { "$ref": "#/definitions/formSection" }]
+                "properties": {
+                    "type": {
+                        "description": "Type of form contents. Forms can contain sections, questions, or controls.",
+                        "type": "string"
+                    }
+                },
+                "oneOf": [
+                    { "$ref": "#/definitions/formSection" },
+                    { "$ref": "#/definitions/formQuestion" },
+                    { "$ref": "#/definitions/formControl" }
+                ]
             },
             "minItems": 1
         }
@@ -38,7 +48,17 @@
                     "description": "Contents of the form section.",
                     "type": "array",
                     "items": {
-                        "oneOf": [{ "$ref": "#/definitions/formQuestion" }, { "$ref": "#/definitions/formSection" }]
+                        "properties": {
+                            "type": {
+                                "description": "Type of form section contents. Form sections can contain controls, questions, or other sections.",
+                                "type": "string"
+                            }
+                        },
+                        "oneOf": [
+                            { "$ref": "#/definitions/formSection" },
+                            { "$ref": "#/definitions/formQuestion" },
+                            { "$ref": "#/definitions/formControl" }
+                        ]
                     },
                     "minItems": 1
                 }
@@ -83,11 +103,14 @@
             "description": "Metadata required to render Angular form controls dynamically.",
             "type": "object",
             "properties": {
+                "type": {
+                    "const": "control"
+                },
                 "id": {
                     "description": "ID of the control.",
                     "type": "string"
                 },
-                "type": {
+                "controlType": {
                     "description": "Type of the control.",
                     "type": "string"
                 },
@@ -108,7 +131,7 @@
                     "type": "string"
                 }
             },
-            "required": ["id", "type", "label", "required"],
+            "required": ["id", "type", "controlType", "label", "required"],
             "oneOf": [
                 { "$ref": "#/definitions/checkbox" },
                 { "$ref": "#/definitions/date" },
@@ -123,7 +146,7 @@
             "description": "A checkbox input control.",
             "type": "object",
             "properties": {
-                "type": {
+                "controlType": {
                     "const": "checkbox"
                 },
                 "checked": {
@@ -136,7 +159,7 @@
             "description": "A date input control.",
             "type": "object",
             "properties": {
-                "type": {
+                "controlType": {
                     "const": "date"
                 },
                 "min": {
@@ -155,7 +178,7 @@
             "description": "An email input control.",
             "type": "object",
             "properties": {
-                "type": {
+                "controlType": {
                     "const": "email"
                 },
                 "placeholder": {
@@ -169,7 +192,7 @@
             "description": "A phone input control.",
             "type": "object",
             "properties": {
-                "type": {
+                "controlType": {
                     "const": "phone"
                 }
             }
@@ -178,7 +201,7 @@
             "description": "A radio input control.",
             "type": "object",
             "properties": {
-                "type": {
+                "controlType": {
                     "const": "radio"
                 },
                 "value": {
@@ -196,7 +219,7 @@
             "description": "A select input control.",
             "type": "object",
             "properties": {
-                "type": {
+                "controlType": {
                     "const": "select"
                 },
                 "options": {
@@ -259,7 +282,7 @@
             "description": "A basic text input control (`<input type=\"text\">`).",
             "type": "object",
             "properties": {
-                "type": {
+                "controlType": {
                     "const": "text"
                 },
                 "placeholder": {

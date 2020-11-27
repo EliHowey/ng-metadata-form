@@ -3,123 +3,83 @@
     "id": "all-controls",
     "contents": [
         {
-            "type": "question",
-            "id": "q-checkbox",
+            "type": "control",
+            "id": "c-checkbox",
+            "controlType": "checkbox",
             "required": true,
-            "questionText": "Checkbox Question",
-            "controls": [
+            "label": "Unchecked by default"
+        },
+        {
+            "type": "control",
+            "id": "c-checkbox-checked",
+            "controlType": "checkbox",
+            "required": true,
+            "label": "Checked by default",
+            "checked": true
+        },
+        {
+            "type": "control",
+            "id": "c-date",
+            "controlType": "date",
+            "label": "Enter a date",
+            "required": true
+        },
+        {
+            "type": "control",
+            "id": "c-date-restricted",
+            "controlType": "date",
+            "label": "Choose a date in the allowed range",
+            "required": true,
+            "min": "2020-10-25",
+            "max": "2020-11-25"
+        },
+        {
+            "type": "control",
+            "id": "c-email",
+            "controlType": "email",
+            "required": true,
+            "label": "Email address",
+            "placeholder": "email@example.com"
+        },
+        {
+            "type": "control",
+            "id": "c-phone",
+            "controlType": "phone",
+            "label": "Phone number",
+            "required": true
+        },
+        {
+            "type": "control",
+            "id": "c-select",
+            "controlType": "select",
+            "label": "Select control",
+            "required": true,
+            "options": [
+                "String option",
                 {
-                    "type": "checkbox",
-                    "id": "c-checkbox",
-                    "required": true,
-                    "label": "Unchecked by default"
+                    "label": "Option label",
+                    "value": "option-value-1"
                 },
                 {
-                    "type": "checkbox",
-                    "id": "c-checkbox-checked",
-                    "required": true,
-                    "label": "Checked by default",
-                    "checked": true
-                }
-            ]
-        },
-        {
-            "type": "question",
-            "id": "q-date",
-            "required": true,
-            "questionText": "Date Question",
-            "controls": [
-                {
-                    "type": "date",
-                    "id": "c-date",
-                    "label": "Enter a date",
-                    "required": true
-                },
-                {
-                    "type": "date",
-                    "id": "c-date-restricted",
-                    "label": "Choose a date in the allowed range",
-                    "required": true,
-                    "min": "2020-10-25",
-                    "max": "2020-11-25"
-                }
-            ]
-        },
-        {
-            "type": "question",
-            "id": "q-email",
-            "required": true,
-            "questionText": "Email Question",
-            "controls": [
-                {
-                    "type": "email",
-                    "id": "c-email",
-                    "required": true,
-                    "label": "Email address",
-                    "placeholder": "email@example.com"
-                }
-            ]
-        },
-        {
-            "type": "question",
-            "id": "q-phone",
-            "required": true,
-            "questionText": "Phone Question",
-            "controls": [
-                {
-                    "type": "phone",
-                    "id": "c-phone",
-                    "label": "Phone number",
-                    "required": true
-                }
-            ]
-        },
-        {
-            "type": "question",
-            "id": "q-select",
-            "required": true,
-            "questionText": "Select Question",
-            "controls": [
-                {
-                    "type": "select",
-                    "id": "c-select",
-                    "label": "Select control",
-                    "required": true,
+                    "label": "Option group",
                     "options": [
                         "String option",
                         {
                             "label": "Option label",
-                            "value": "option-value-1"
-                        },
-                        {
-                            "label": "Option group",
-                            "options": [
-                                "String option",
-                                {
-                                    "label": "Option label",
-                                    "value": "option-value-2"
-                                }
-                            ]
+                            "value": "option-value-2"
                         }
                     ]
                 }
             ]
         },
         {
-            "type": "question",
-            "id": "q-text",
+            "type": "control",
+            "id": "c-text",
+            "controlType": "text",
+            "label": "Enter a value:",
             "required": true,
-            "questionText": "Text Question",
-            "controls": [
-                {
-                    "type": "text",
-                    "id": "c-text",
-                    "label": "Enter a value:",
-                    "required": true,
-                    "helpText": "Help text goes here",
-                    "placeholder": "Placeholder value"
-                }
-            ]
+            "helpText": "Help text goes here",
+            "placeholder": "Placeholder value"
         }
     ]
 }

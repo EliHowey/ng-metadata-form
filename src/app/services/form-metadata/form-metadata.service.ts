@@ -44,6 +44,8 @@ export class FormMetadataService {
             return this.processFormGroupMetadata(content);
         } else if (formContentIsType(content, 'question')) {
             return this.processFormQuestionMetadata(content);
+        } else if (formContentIsType(content, 'control')) {
+            return this.processFormControlMetadata(content);
         } else {
             throw new FormMetadataError(FormMetadataErrors.FM008);
         }

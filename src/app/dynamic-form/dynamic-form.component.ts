@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormContentMetadata, FormMetadata, FormSectionMetadata } from '../model/form';
+import { FormContentMetadata, FormMetadata, FormQuestionMetadata, FormSectionMetadata } from '../model/form';
 import { FormMetadataService } from '../services/form-metadata/form-metadata.service';
 
 @Component({
@@ -27,6 +27,10 @@ export class DynamicFormComponent implements OnInit {
 
     isSectionContent(content: FormContentMetadata): content is FormSectionMetadata {
         return content.type === 'section';
+    }
+
+    isQuestionContent(content: FormContentMetadata): content is FormQuestionMetadata {
+        return content.type === 'question';
     }
 
     onSubmit(): void {

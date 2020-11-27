@@ -1,26 +1,26 @@
-<ng-container [ngSwitch]="control.type">
+<ng-container [ngSwitch]="control.controlType">
     <ng-container *ngSwitchCase="'checkbox'">
         <input type="checkbox" [attr.id]="control.id" [attr.checked]="$any(control).checked ? '' : null" />
-        <label [attr.htmlFor]="control.id">{{ control.label }}</label>
+        <label [attr.for]="control.id">{{ control.label }}</label>
     </ng-container>
 
     <ng-container *ngSwitchCase="'date'">
-        <label [attr.htmlFor]="control.id">{{ control.label }}</label>
+        <label [attr.for]="control.id">{{ control.label }}</label>
         <input type="date" [attr.id]="control.id" [attr.min]="$any(control).min" [attr.max]="$any(control).max" />
     </ng-container>
 
     <ng-container *ngSwitchCase="'email'">
-        <label [attr.htmlFor]="control.id">{{ control.label }}</label>
+        <label [attr.for]="control.id">{{ control.label }}</label>
         <input type="email" [attr.id]="control.id" [attr.placeholder]="$any(control).placeholder" />
     </ng-container>
 
     <ng-container *ngSwitchCase="'phone'">
-        <label [attr.htmlFor]="control.id">{{ control.label }}</label>
+        <label [attr.for]="control.id">{{ control.label }}</label>
         <input type="tel" [attr.id]="control.id" />
     </ng-container>
 
     <ng-container *ngSwitchCase="'select'">
-        <label [attr.htmlFor]="control.id">{{ control.label }}</label>
+        <label [attr.for]="control.id">{{ control.label }}</label>
         <select [attr.id]="control.id">
             <ng-container *ngFor="let option of $any(control).options">
                 <!-- String options -->
@@ -43,7 +43,7 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'text'">
-        <label [attr.htmlFor]="control.id">{{ control.label }}</label>
+        <label [attr.for]="control.id">{{ control.label }}</label>
         <input type="text" [attr.id]="control.id" [attr.placeholder]="$any(control).placeholder" />
     </ng-container>
 

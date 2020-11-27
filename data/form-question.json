@@ -8,8 +8,9 @@
             "required": true,
             "controls": [
                 {
+                    "type": "control",
                     "id": "q-single-c1",
-                    "type": "email",
+                    "controlType": "email",
                     "label": "Email address",
                     "placeholder": "email@example.com",
                     "required": true
@@ -23,20 +24,23 @@
             "required": true,
             "controls": [
                 {
+                    "type": "control",
                     "id": "q-multiple-c1",
-                    "type": "text",
+                    "controlType": "text",
                     "label": "First name",
                     "required": true
                 },
                 {
+                    "type": "control",
                     "id": "q-multiple-c2",
-                    "type": "text",
+                    "controlType": "text",
                     "label": "Middle name",
                     "required": false
                 },
                 {
+                    "type": "control",
                     "id": "q-multiple-c3",
-                    "type": "text",
+                    "controlType": "text",
                     "label": "Last name",
                     "required": true
                 }

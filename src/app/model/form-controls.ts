@@ -12,7 +12,7 @@ export interface AbstractFormControlMetadata {
     /**
      * Type of the control.
      */
-    type: FormControlType;
+    controlType: FormControlType;
 
     /**
      * Label for the control.
@@ -35,20 +35,21 @@ export interface AbstractFormControlMetadata {
     initialValue?: string;
 }
 
-export type FormControlMetadata =
+export type FormControlMetadata = { type: 'control' } & (
     | CheckboxControlMetadata
     | DateControlMetadata
     | EmailControlMetadata
     | PhoneControlMetadata
     | RadioControlMetadata
     | SelectControlMetadata
-    | TextControlMetadata;
+    | TextControlMetadata
+);
 
 /**
  * A checkbox input control.
  */
 export interface CheckboxControlMetadata extends AbstractFormControlMetadata {
-    type: 'checkbox';
+    controlType: 'checkbox';
 
     /**
      * Whether the checkbox is checked by default.
@@ -60,7 +61,7 @@ export interface CheckboxControlMetadata extends AbstractFormControlMetadata {
  * A date input control.
  */
 export interface DateControlMetadata extends AbstractFormControlMetadata {
-    type: 'date';
+    controlType: 'date';
 
     /**
      * ISO date string for the earliest allowed date.
@@ -79,7 +80,7 @@ export interface DateControlMetadata extends AbstractFormControlMetadata {
  * An email input control.
  */
 export interface EmailControlMetadata extends AbstractFormControlMetadata {
-    type: 'email';
+    controlType: 'email';
 
     /**
      * Placeholder text for the input.
@@ -92,14 +93,14 @@ export interface EmailControlMetadata extends AbstractFormControlMetadata {
  * A phone input control.
  */
 export interface PhoneControlMetadata extends AbstractFormControlMetadata {
-    type: 'phone';
+    controlType: 'phone';
 }
 
 /**
  * A radio input control.
  */
 export interface RadioControlMetadata extends AbstractFormControlMetadata {
-    type: 'radio';
+    controlType: 'radio';
 
     /**
      * Value of the radio option.
@@ -116,7 +117,7 @@ export interface RadioControlMetadata extends AbstractFormControlMetadata {
  * A select input control.
  */
 export interface SelectControlMetadata extends AbstractFormControlMetadata {
-    type: 'select';
+    controlType: 'select';
 
     /**
      * Options available to select from the control.
@@ -178,7 +179,7 @@ interface OptGroup {
  * A basic text input control.
  */
 export interface TextControlMetadata extends AbstractFormControlMetadata {
-    type: 'text';
+    controlType: 'text';
     placeholder?: string;
 }
 
@@ -190,5 +191,5 @@ export function isControlOfType(c: AbstractFormControlMetadata, type: 'radio'): 
 export function isControlOfType(c: AbstractFormControlMetadata, type: 'select'): c is SelectControlMetadata;
 export function isControlOfType(c: AbstractFormControlMetadata, type: 'text'): c is TextControlMetadata;
 export function isControlOfType(c: AbstractFormControlMetadata, type: FormControlType): boolean {
-    return c.type === type;
+    return c.controlType === type;
 }
