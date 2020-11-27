@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import ALL_CONTROLS from '../../data/all-controls.json';
-import ONE_QUESTION from '../../data/one-question.json';
-import ONE_SECTION from '../../data/one-section.json';
+import FORM_CONTROLS from '../../data/form-controls.json';
+import FORM_QUESTION from '../../data/form-question.json';
+import FORM_SECTION from '../../data/form-section.json';
 import { FormMetadata } from './model/form';
 import { FormMetadataService } from './services/form-metadata/form-metadata.service';
 
 const JSON_FILES: Record<string, any> = {
-    'one-question': ONE_QUESTION,
-    'one-section': ONE_SECTION,
-    'all-controls': ALL_CONTROLS
+    controls: FORM_CONTROLS,
+    question: FORM_QUESTION,
+    section: FORM_SECTION
 };
 
 @Component({

@@ -2,16 +2,16 @@
 
 <form [formGroup]="renderForm" (ngSubmit)="onChangeRender()">
     <fieldset>
-        <legend>Render:</legend>
+        <legend>Examples</legend>
 
-        <input type="radio" formControlName="type" id="type-all" value="all-controls" />
-        <label for="type-all">All controls</label>
+        <input type="radio" formControlName="type" id="render-controls" value="controls" />
+        <label for="render-controls">Controls</label>
 
-        <input type="radio" formControlName="type" id="type-one-q" value="one-question" />
-        <label for="type-one-q">One question</label>
+        <input type="radio" formControlName="type" id="render-question" value="question" />
+        <label for="render-question">One question</label>
 
-        <input type="radio" formControlName="type" id="type-one-s" value="one-section" />
-        <label for="type-one-s">One section</label>
+        <input type="radio" formControlName="type" id="render-section" value="section" />
+        <label for="render-section">One section</label>
     </fieldset>
 
     <button type="submit">Render</button>

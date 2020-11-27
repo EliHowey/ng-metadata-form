@@ -1,0 +1,46 @@
+{
+    "$schema": "../schemas/form-metadata.schema.json",
+    "contents": [
+        {
+            "type": "question",
+            "id": "q-single",
+            "questionText": "Question with one control",
+            "required": true,
+            "controls": [
+                {
+                    "id": "q-single-c1",
+                    "type": "email",
+                    "label": "Email address",
+                    "placeholder": "email@example.com",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "type": "question",
+            "id": "q-multiple",
+            "questionText": "Question with multiple controls",
+            "required": true,
+            "controls": [
+                {
+                    "id": "q-multiple-c1",
+                    "type": "text",
+                    "label": "First name",
+                    "required": true
+                },
+                {
+                    "id": "q-multiple-c2",
+                    "type": "text",
+                    "label": "Middle name",
+                    "required": false
+                },
+                {
+                    "id": "q-multiple-c3",
+                    "type": "text",
+                    "label": "Last name",
+                    "required": true
+                }
+            ]
+        }
+    ]
+}
