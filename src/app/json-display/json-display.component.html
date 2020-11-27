@@ -1,0 +1,7 @@
+<details [attr.open]="expanded ? '' : null">
+    <summary>{{ title }}</summary>
+
+    <div class="contents">
+        <pre><code>{{ json | json }}</code></pre>
+    </div>
+</details>
