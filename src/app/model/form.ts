@@ -20,6 +20,10 @@ export interface FormMetadata {
  */
 export type FormContentMetadata = FormSectionMetadata | FormQuestionMetadata;
 
+type BaseFormContents = {
+    type: 'section' | 'question';
+};
+
 export function formContentIsType(c: FormContentMetadata, type: 'section'): c is FormSectionMetadata;
 export function formContentIsType(c: FormContentMetadata, type: 'question'): c is FormQuestionMetadata;
 export function formContentIsType(c: FormContentMetadata, type: 'section' | 'question'): boolean {
@@ -29,7 +33,7 @@ export function formContentIsType(c: FormContentMetadata, type: 'section' | 'que
 /**
  * A section of a dynamic Angular form.
  */
-export interface FormSectionMetadata {
+export interface FormSectionMetadata extends BaseFormContents {
     type: 'section';
 
     /**
@@ -51,7 +55,7 @@ export interface FormSectionMetadata {
 /**
  * A question within a dynamic Angular form.
  */
-export interface FormQuestionMetadata {
+export interface FormQuestionMetadata extends BaseFormContents {
     type: 'question';
 
     /**

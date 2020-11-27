@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { FormControlMetadata } from 'src/app/model/form-controls';
+import FORM_METADATA_SCHEMA from '../../../../schemas/form-metadata.schema.json';
 import {
     formContentIsType,
     FormContentMetadata,
@@ -8,11 +9,18 @@ import {
     FormQuestionMetadata,
     FormSectionMetadata
 } from '../../model/form';
+import { AjvService } from '../ajv/ajv.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FormMetadataService {
+    constructor(private parser: AjvService) {}
+
+    getMetadata(data: any): FormMetadata {
+        return this.parser.validate(FORM_METADATA_SCHEMA, data);
+    }
+
     getFormFromMetadata(metadata: FormMetadata): FormGroup {
         if (!metadata || !metadata.contents || metadata.contents.length === 0) {
             throw new FormMetadataError(FormMetadataErrors.FM001, metadata.id);
