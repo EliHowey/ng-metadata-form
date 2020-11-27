@@ -1,0 +1,94 @@
+{
+    "$schema": "../schemas/form-metadata.schema.json",
+    "id": "all-controls",
+    "contents": [
+        {
+            "type": "question",
+            "id": "q-checkbox",
+            "required": true,
+            "questionText": "Checkbox Question",
+            "controls": [
+                {
+                    "type": "checkbox",
+                    "id": "c-checkbox",
+                    "required": true,
+                    "label": "Unchecked by default"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "c-checkbox-checked",
+                    "required": true,
+                    "label": "Checked by default",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "type": "question",
+            "id": "q-date",
+            "required": true,
+            "questionText": "Date Question",
+            "controls": [
+                {
+                    "type": "date",
+                    "id": "c-date",
+                    "label": "Enter a date",
+                    "required": true
+                },
+                {
+                    "type": "date",
+                    "id": "c-date-restricted",
+                    "label": "Choose a date in the allowed range",
+                    "required": true,
+                    "min": "2020-10-25",
+                    "max": "2020-11-25"
+                }
+            ]
+        },
+        {
+            "type": "question",
+            "id": "q-email",
+            "required": true,
+            "questionText": "Email Question",
+            "controls": [
+                {
+                    "type": "email",
+                    "id": "c-email",
+                    "required": true,
+                    "label": "Email address",
+                    "placeholder": "email@example.com"
+                }
+            ]
+        },
+        {
+            "type": "question",
+            "id": "q-phone",
+            "required": true,
+            "questionText": "Phone Question",
+            "controls": [
+                {
+                    "type": "phone",
+                    "id": "c-phone",
+                    "label": "Phone number",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "type": "question",
+            "id": "q-text",
+            "required": true,
+            "questionText": "Text Question",
+            "controls": [
+                {
+                    "type": "text",
+                    "id": "c-text",
+                    "label": "Enter a value:",
+                    "required": true,
+                    "helpText": "Help text goes here",
+                    "placeholder": "Placeholder value"
+                }
+            ]
+        }
+    ]
+}

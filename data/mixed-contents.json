@@ -1,0 +1,96 @@
+{
+    "$schema": "../schemas/form-metadata.schema.json",
+    "id": "full-section",
+    "contents": [
+        {
+            "type": "section",
+            "id": "s-demographics",
+            "title": "Demographics",
+            "contents": [
+                {
+                    "type": "question",
+                    "id": "q-name",
+                    "questionText": "What is your name?",
+                    "required": true,
+                    "controls": [
+                        {
+                            "type": "text",
+                            "id": "q-name--first-name",
+                            "label": "First name",
+                            "required": true
+                        },
+                        {
+                            "type": "text",
+                            "id": "q-name--middle-name",
+                            "label": "Middle name",
+                            "required": false
+                        },
+                        {
+                            "type": "text",
+                            "id": "q-name--last-name",
+                            "label": "Last name",
+                            "required": true
+                        }
+                    ]
+                },
+                {
+                    "type": "question",
+                    "id": "q-address",
+                    "questionText": "Address",
+                    "required": true,
+                    "controls": [
+                        {
+                            "type": "text",
+                            "id": "q-address--line-1",
+                            "label": "Address line 1",
+                            "required": true,
+                            "placeholder": "123 Anywhere Street"
+                        },
+                        {
+                            "type": "text",
+                            "id": "q-address--line-2",
+                            "label": "Address line 2",
+                            "required": false,
+                            "placeholder": "Apt. C"
+                        },
+                        {
+                            "type": "text",
+                            "id": "q-address--city",
+                            "label": "City",
+                            "required": true,
+                            "placeholder": "Anytown"
+                        },
+                        {
+                            "type": "select",
+                            "id": "q-address--state",
+                            "label": "State",
+                            "required": true,
+                            "options": ["Alabama (AL)", "Alaska (AK)", "Arizona (AZ)", "..."]
+                        },
+                        {
+                            "type": "text",
+                            "id": "q-address--zip",
+                            "label": "ZIP",
+                            "required": true,
+                            "placeholder": "55555"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "question",
+            "id": "q-consent",
+            "questionText": "Do you agree to our Terms and Conditions?",
+            "required": true,
+            "controls": [
+                {
+                    "type": "checkbox",
+                    "id": "q-consent--checkbox",
+                    "required": true,
+                    "label": "I agree to the Terms and Conditions"
+                }
+            ]
+        }
+    ]
+}

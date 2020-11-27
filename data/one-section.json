@@ -1,0 +1,26 @@
+{
+    "$schema": "../schemas/form-metadata.schema.json",
+    "contents": [
+        {
+            "type": "section",
+            "id": "section-1",
+            "title": "Form Section",
+            "contents": [
+                {
+                    "type": "question",
+                    "id": "question-1-1",
+                    "required": true,
+                    "questionText": "Question 1",
+                    "controls": [
+                        {
+                            "type": "text",
+                            "id": "control-1-1-1",
+                            "label": "Control 1",
+                            "required": true
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
