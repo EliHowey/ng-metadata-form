@@ -3,13 +3,15 @@ import { FormControl, FormGroup } from '@angular/forms';
 import FORM_CONTROLS from '../../data/form-controls.json';
 import FORM_QUESTION from '../../data/form-question.json';
 import FORM_SECTION from '../../data/form-section.json';
+import MIXED_CONTENTS from '../../data/mixed-contents.json';
 import { FormMetadata } from './model/form';
 import { FormMetadataService } from './services/form-metadata/form-metadata.service';
 
 const JSON_FILES: Record<string, any> = {
     controls: FORM_CONTROLS,
     question: FORM_QUESTION,
-    section: FORM_SECTION
+    section: FORM_SECTION,
+    mixed: MIXED_CONTENTS
 };
 
 @Component({

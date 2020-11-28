@@ -5,30 +5,40 @@
     "type": "object",
     "properties": {
         "id": {
-            "description": "ID for the form.",
-            "type": "string"
+            "description": "A unique ID for the form. IDs may contain alphanumeric characters, hyphens, and/or underscores.",
+            "type": "string",
+            "pattern": "^[A-Za-z0-9\\-_]+$"
         },
         "contents": {
             "description": "Contents of the form. This can be a series of form questions or sections.",
             "type": "array",
             "items": {
+                "type": "object",
+                "$ref": "#/definitions/formContents",
                 "properties": {
                     "type": {
-                        "description": "Type of form contents. Forms can contain sections, questions, or controls.",
-                        "type": "string"
+                        "description": "Type of form contents. Forms can contain sections, questions, or controls."
                     }
-                },
-                "oneOf": [
-                    { "$ref": "#/definitions/formSection" },
-                    { "$ref": "#/definitions/formQuestion" },
-                    { "$ref": "#/definitions/formControl" }
-                ]
+                }
             },
             "minItems": 1
         }
     },
     "required": ["contents"],
     "definitions": {
+        "formContents": {
+            "type": "object",
+            "allOf": [
+                { "required": ["type"] },
+                {
+                    "oneOf": [
+                        { "$ref": "#/definitions/formSection" },
+                        { "$ref": "#/definitions/formQuestion" },
+                        { "$ref": "#/definitions/formControl" }
+                    ]
+                }
+            ]
+        },
         "formSection": {
             "description": "A section of a dynamic Angular form.",
             "type": "object",
@@ -37,8 +47,9 @@
                     "const": "section"
                 },
                 "id": {
-                    "description": "ID for the form section.",
-                    "type": "string"
+                    "description": "A unique ID for the form section. IDs may contain alphanumeric characters, hyphens, and/or underscores.",
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9\\-_]+$"
                 },
                 "title": {
                     "description": "Title of the form section.",
@@ -48,22 +59,18 @@
                     "description": "Contents of the form section.",
                     "type": "array",
                     "items": {
+                        "$ref": "#/definitions/formContents",
                         "properties": {
                             "type": {
                                 "description": "Type of form section contents. Form sections can contain controls, questions, or other sections.",
                                 "type": "string"
                             }
-                        },
-                        "oneOf": [
-                            { "$ref": "#/definitions/formSection" },
-                            { "$ref": "#/definitions/formQuestion" },
-                            { "$ref": "#/definitions/formControl" }
-                        ]
+                        }
                     },
                     "minItems": 1
                 }
             },
-            "required": ["type", "id", "contents"]
+            "required": ["id", "contents"]
         },
         "formQuestion": {
             "description": "A question within a dynamic Angular form.",
@@ -73,8 +80,9 @@
                     "const": "question"
                 },
                 "id": {
-                    "description": "ID for the form question.",
-                    "type": "string"
+                    "description": "A unique ID for the form question. IDs may contain alphanumeric characters, hyphens, and/or underscores.",
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9\\-_]+$"
                 },
                 "questionText": {
                     "description": "Display text of the form question.",
@@ -83,10 +91,6 @@
                 "helpText": {
                     "description": "Help text for the form question.",
                     "type": "string"
-                },
-                "required": {
-                    "description": "Whether the user is required to provide a response to the question.",
-                    "type": "boolean"
                 },
                 "controls": {
                     "description": "Form controls for the question.",
@@ -97,7 +101,7 @@
                     "minItems": 1
                 }
             },
-            "required": ["type", "id", "questionText", "required", "controls"]
+            "required": ["id", "questionText", "controls"]
         },
         "formControl": {
             "description": "Metadata required to render Angular form controls dynamically.",
@@ -107,8 +111,9 @@
                     "const": "control"
                 },
                 "id": {
-                    "description": "ID of the control.",
-                    "type": "string"
+                    "description": "A unique ID for the form control. IDs may contain alphanumeric characters, hyphens, and/or underscores.",
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9\\-_]+$"
                 },
                 "controlType": {
                     "description": "Type of the control.",
@@ -131,7 +136,7 @@
                     "type": "string"
                 }
             },
-            "required": ["id", "type", "controlType", "label", "required"],
+            "required": ["id", "controlType", "label"],
             "oneOf": [
                 { "$ref": "#/definitions/checkbox" },
                 { "$ref": "#/definitions/date" },
@@ -236,7 +241,7 @@
             }
         },
         "option": {
-            "description": "An option for a radio or select control.",
+            "description": "An option for a select control.",
             "type": "object",
             "properties": {
                 "label": {

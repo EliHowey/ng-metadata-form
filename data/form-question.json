@@ -8,7 +8,6 @@
             "required": true,
             "controls": [
                 {
-                    "type": "control",
                     "id": "q-single-c1",
                     "controlType": "email",
                     "label": "Email address",
@@ -24,21 +23,17 @@
             "required": true,
             "controls": [
                 {
-                    "type": "control",
                     "id": "q-multiple-c1",
                     "controlType": "text",
                     "label": "First name",
                     "required": true
                 },
                 {
-                    "type": "control",
                     "id": "q-multiple-c2",
                     "controlType": "text",
-                    "label": "Middle name",
-                    "required": false
+                    "label": "Middle name"
                 },
                 {
-                    "type": "control",
                     "id": "q-multiple-c3",
                     "controlType": "text",
                     "label": "Last name",

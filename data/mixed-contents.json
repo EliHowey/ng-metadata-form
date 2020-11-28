@@ -1,6 +1,6 @@
 {
     "$schema": "../schemas/form-metadata.schema.json",
-    "id": "full-section",
+    "id": "mixed-contents",
     "contents": [
         {
             "type": "section",
@@ -14,19 +14,18 @@
                     "required": true,
                     "controls": [
                         {
-                            "type": "text",
+                            "controlType": "text",
                             "id": "q-name--first-name",
                             "label": "First name",
                             "required": true
                         },
                         {
-                            "type": "text",
+                            "controlType": "text",
                             "id": "q-name--middle-name",
-                            "label": "Middle name",
-                            "required": false
+                            "label": "Middle name"
                         },
                         {
-                            "type": "text",
+                            "controlType": "text",
                             "id": "q-name--last-name",
                             "label": "Last name",
                             "required": true
@@ -40,35 +39,34 @@
                     "required": true,
                     "controls": [
                         {
-                            "type": "text",
+                            "controlType": "text",
                             "id": "q-address--line-1",
                             "label": "Address line 1",
                             "required": true,
                             "placeholder": "123 Anywhere Street"
                         },
                         {
-                            "type": "text",
+                            "controlType": "text",
                             "id": "q-address--line-2",
                             "label": "Address line 2",
-                            "required": false,
                             "placeholder": "Apt. C"
                         },
                         {
-                            "type": "text",
+                            "controlType": "text",
                             "id": "q-address--city",
                             "label": "City",
                             "required": true,
                             "placeholder": "Anytown"
                         },
                         {
-                            "type": "select",
+                            "controlType": "select",
                             "id": "q-address--state",
                             "label": "State",
                             "required": true,
                             "options": ["Alabama (AL)", "Alaska (AK)", "Arizona (AZ)", "..."]
                         },
                         {
-                            "type": "text",
+                            "controlType": "text",
                             "id": "q-address--zip",
                             "label": "ZIP",
                             "required": true,
@@ -85,12 +83,19 @@
             "required": true,
             "controls": [
                 {
-                    "type": "checkbox",
+                    "controlType": "checkbox",
                     "id": "q-consent--checkbox",
                     "required": true,
                     "label": "I agree to the Terms and Conditions"
                 }
             ]
+        },
+        {
+            "type": "control",
+            "controlType": "checkbox",
+            "id": "c-terms",
+            "label": "I agree to the Terms and Conditions.",
+            "required": true
         }
     ]
 }

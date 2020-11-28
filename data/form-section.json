@@ -13,7 +13,6 @@
                     "questionText": "Question 1",
                     "controls": [
                         {
-                            "type": "control",
                             "id": "control-1-1-1",
                             "controlType": "text",
                             "label": "Control 1",
