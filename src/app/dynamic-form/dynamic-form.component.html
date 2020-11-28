@@ -1,19 +1,17 @@
 <app-json-display [title]="'Form Metadata'" [json]="metadata"></app-json-display>
 
-<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+<form *ngIf="form" [attr.id]="metadata.id" [formGroup]="form" (ngSubmit)="onSubmit()">
     <ng-container *ngFor="let content of metadata?.contents">
         <ng-container *ngIf="isSectionContent(content)">
-            <app-dynamic-form-section></app-dynamic-form-section>
+            <app-dynamic-form-section [section]="content"></app-dynamic-form-section>
         </ng-container>
 
-        <ng-container *ngIf="!isSectionContent(content)">
-            <ng-container *ngIf="isQuestionContent(content)">
-                <app-dynamic-form-question [question]="content"></app-dynamic-form-question>
-            </ng-container>
+        <ng-container *ngIf="isQuestionContent(content)">
+            <app-dynamic-form-question [question]="content"></app-dynamic-form-question>
+        </ng-container>
 
-            <ng-container *ngIf="!isQuestionContent(content)">
-                <app-dynamic-form-control [control]="content"></app-dynamic-form-control>
-            </ng-container>
+        <ng-container *ngIf="isControlContent(content)">
+            <app-dynamic-form-control [control]="content"></app-dynamic-form-control>
         </ng-container>
     </ng-container>
 </form>

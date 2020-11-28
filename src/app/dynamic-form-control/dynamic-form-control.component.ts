@@ -7,9 +7,23 @@ import { FormControlMetadata } from '../model/form-controls';
     styleUrls: ['./dynamic-form-control.component.scss']
 })
 export class DynamicFormControlComponent {
+    /**
+     * Metadata of the form control to render.
+     */
     @Input() control!: FormControlMetadata;
 
-    @HostBinding('attr.data-type')
+    /**
+     * ID of the control to render.
+     */
+    @HostBinding('attr.data-control-id')
+    get controlId(): string {
+        return this.control.id;
+    }
+
+    /**
+     * Type of the control to render.
+     */
+    @HostBinding('attr.data-control-type')
     get type(): string {
         return this.control.type;
     }

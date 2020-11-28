@@ -78,15 +78,24 @@
         },
         {
             "type": "question",
-            "id": "q-consent",
-            "questionText": "Do you agree to our Terms and Conditions?",
+            "id": "q-height",
+            "questionText": "Height",
             "required": true,
             "controls": [
                 {
-                    "controlType": "checkbox",
-                    "id": "q-consent--checkbox",
+                    "controlType": "number",
+                    "id": "q-height--feet",
                     "required": true,
-                    "label": "I agree to the Terms and Conditions"
+                    "label": "Height (feet)",
+                    "min": 0
+                },
+                {
+                    "controlType": "number",
+                    "id": "q-height--inches",
+                    "required": true,
+                    "label": "Height (inches)",
+                    "min": 0,
+                    "max": 11
                 }
             ]
         },

@@ -3,38 +3,23 @@
     "contents": [
         {
             "type": "question",
-            "id": "q-single",
-            "questionText": "Question with one control",
+            "id": "q-name",
+            "questionText": "What is your name?",
             "required": true,
             "controls": [
                 {
-                    "id": "q-single-c1",
-                    "controlType": "email",
-                    "label": "Email address",
-                    "placeholder": "email@example.com",
-                    "required": true
-                }
-            ]
-        },
-        {
-            "type": "question",
-            "id": "q-multiple",
-            "questionText": "Question with multiple controls",
-            "required": true,
-            "controls": [
-                {
-                    "id": "q-multiple-c1",
+                    "id": "q-name--c-first-name",
                     "controlType": "text",
                     "label": "First name",
                     "required": true
                 },
                 {
-                    "id": "q-multiple-c2",
+                    "id": "q-name--c-middle-name",
                     "controlType": "text",
                     "label": "Middle name"
                 },
                 {
-                    "id": "q-multiple-c3",
+                    "id": "q-name--c-last-name",
                     "controlType": "text",
                     "label": "Last name",
                     "required": true

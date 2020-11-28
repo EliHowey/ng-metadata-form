@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormContentMetadata, FormMetadata, FormQuestionMetadata, FormSectionMetadata } from '../model/form';
+import { FormControlMetadata } from '../model/form-controls';
 import { FormMetadataService } from '../services/form-metadata/form-metadata.service';
 
 @Component({
@@ -9,10 +10,24 @@ import { FormMetadataService } from '../services/form-metadata/form-metadata.ser
     styleUrls: ['./dynamic-form.component.scss']
 })
 export class DynamicFormComponent implements OnInit {
+    /**
+     * Metadata used to render the form.
+     */
     @Input() metadata!: FormMetadata;
 
+    /**
+     * Reactive Forms representation of the form metadata.
+     */
     form!: FormGroup;
+
+    /**
+     * Error message when the form metadata could not be processed.
+     */
     error = '';
+
+    /**
+     * Submitted form data.
+     */
     payload = '';
 
     constructor(private metadataService: FormMetadataService) {}
@@ -31,6 +46,10 @@ export class DynamicFormComponent implements OnInit {
 
     isQuestionContent(content: FormContentMetadata): content is FormQuestionMetadata {
         return content.type === 'question';
+    }
+
+    isControlContent(content: FormContentMetadata): content is FormControlMetadata {
+        return content.type === 'control';
     }
 
     onSubmit(): void {

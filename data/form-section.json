@@ -17,6 +17,60 @@
                             "controlType": "text",
                             "label": "Control 1",
                             "required": true
+                        },
+                        {
+                            "id": "control-1-1-2",
+                            "controlType": "text",
+                            "label": "Control 2",
+                            "required": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "id": "section-2",
+            "title": "Nested Sections",
+            "contents": [
+                {
+                    "type": "section",
+                    "id": "section-2-1",
+                    "title": "Subsection (Level 2)",
+                    "contents": [
+                        {
+                            "type": "section",
+                            "id": "section-2-1-1",
+                            "title": "Subsection (Level 3)",
+                            "contents": [
+                                {
+                                    "type": "section",
+                                    "id": "section-2-1-1-1",
+                                    "title": "Subsection (Level 4)",
+                                    "contents": [
+                                        {
+                                            "type": "section",
+                                            "id": "section-2-1-1-1-1",
+                                            "title": "Subsection (Level 5)",
+                                            "contents": [
+                                                {
+                                                    "type": "section",
+                                                    "id": "section-2-1-1-1-1-1",
+                                                    "title": "Subsection (Level 6)",
+                                                    "contents": [
+                                                        {
+                                                            "type": "control",
+                                                            "id": "c-2",
+                                                            "label": "Control label",
+                                                            "controlType": "text"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { FormQuestionMetadata } from '../model/form';
 
 @Component({
@@ -6,10 +6,17 @@ import { FormQuestionMetadata } from '../model/form';
     templateUrl: './dynamic-form-question.component.html',
     styleUrls: ['./dynamic-form-question.component.scss']
 })
-export class DynamicFormQuestionComponent implements OnInit {
+export class DynamicFormQuestionComponent {
+    /**
+     * Metadata of the form question.
+     */
     @Input() question!: FormQuestionMetadata;
 
-    constructor() {}
-
-    ngOnInit(): void {}
+    /**
+     * ID of the form question.
+     */
+    @HostBinding('attr.id')
+    get id(): string {
+        return this.question.id;
+    }
 }

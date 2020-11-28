@@ -94,7 +94,7 @@
                     "items": {
                         "$ref": "#/definitions/formControl"
                     },
-                    "minItems": 1
+                    "minItems": 2
                 }
             },
             "required": ["id", "questionText", "controls"]
