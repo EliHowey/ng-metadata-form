@@ -43,9 +43,7 @@
             "description": "A section of a dynamic Angular form.",
             "type": "object",
             "properties": {
-                "type": {
-                    "const": "section"
-                },
+                "type": { "const": "section" },
                 "id": {
                     "description": "A unique ID for the form section. IDs may contain alphanumeric characters, hyphens, and/or underscores.",
                     "type": "string",
@@ -76,9 +74,7 @@
             "description": "A question within a dynamic Angular form.",
             "type": "object",
             "properties": {
-                "type": {
-                    "const": "question"
-                },
+                "type": { "const": "question" },
                 "id": {
                     "description": "A unique ID for the form question. IDs may contain alphanumeric characters, hyphens, and/or underscores.",
                     "type": "string",
@@ -107,9 +103,7 @@
             "description": "Metadata required to render Angular form controls dynamically.",
             "type": "object",
             "properties": {
-                "type": {
-                    "const": "control"
-                },
+                "type": { "const": "control" },
                 "id": {
                     "description": "A unique ID for the form control. IDs may contain alphanumeric characters, hyphens, and/or underscores.",
                     "type": "string",
@@ -121,7 +115,8 @@
                 },
                 "label": {
                     "description": "Label for the control.",
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 1
                 },
                 "helpText": {
                     "description": "Help text for the control.",
@@ -141,19 +136,24 @@
                 { "$ref": "#/definitions/checkbox" },
                 { "$ref": "#/definitions/date" },
                 { "$ref": "#/definitions/email" },
+                { "$ref": "#/definitions/number" },
                 { "$ref": "#/definitions/phone" },
                 { "$ref": "#/definitions/radio" },
                 { "$ref": "#/definitions/select" },
-                { "$ref": "#/definitions/text" }
+                { "$ref": "#/definitions/text" },
+                { "$ref": "#/definitions/textarea" }
             ]
+        },
+        "form-control-placeholder": {
+            "description": "Placeholder text for the input.",
+            "type": "string",
+            "minLength": 1
         },
         "checkbox": {
             "description": "A checkbox input control.",
             "type": "object",
             "properties": {
-                "controlType": {
-                    "const": "checkbox"
-                },
+                "controlType": { "const": "checkbox" },
                 "checked": {
                     "description": "Whether the checkbox is checked by default.",
                     "type": "boolean"
@@ -164,17 +164,17 @@
             "description": "A date input control.",
             "type": "object",
             "properties": {
-                "controlType": {
-                    "const": "date"
+                "controlType": { "const": "date" },
+                "initialValue": {
+                    "type": "string",
+                    "examples": ["2020-11-25"]
                 },
                 "min": {
                     "description": "ISO date string for the earliest allowed date.",
-                    "type": "string",
                     "examples": ["2020-10-25"]
                 },
                 "max": {
                     "description": "ISO date string for the latest allowed date.",
-                    "type": "string",
                     "examples": ["2020-11-25"]
                 }
             }
@@ -183,32 +183,48 @@
             "description": "An email input control.",
             "type": "object",
             "properties": {
-                "controlType": {
-                    "const": "email"
+                "controlType": { "const": "email" },
+                "initialValue": {
+                    "examples": ["email@example.com"]
                 },
                 "placeholder": {
-                    "description": "Placeholder text for the input.",
-                    "type": "string",
+                    "$ref": "#/definitions/form-control-placeholder",
                     "examples": ["email@example.com"]
                 }
+            }
+        },
+        "number": {
+            "description": "A numeric input control.",
+            "type": "object",
+            "properties": {
+                "controlType": { "const": "number" },
+                "min": {
+                    "description": "Minimum value the input will accept.",
+                    "type": "number"
+                },
+                "max": {
+                    "description": "Maximum value the input will accept.",
+                    "type": "number"
+                },
+                "step": {
+                    "description": "The input will only accept values that are a multiple of this value.",
+                    "type": "number"
+                },
+                "placeholder": { "$ref": "#/definitions/form-control-placeholder" }
             }
         },
         "phone": {
             "description": "A phone input control.",
             "type": "object",
             "properties": {
-                "controlType": {
-                    "const": "phone"
-                }
+                "controlType": { "const": "phone" }
             }
         },
         "radio": {
             "description": "A radio input control.",
             "type": "object",
             "properties": {
-                "controlType": {
-                    "const": "radio"
-                },
+                "controlType": { "const": "radio" },
                 "value": {
                     "description": "Value of the radio option.",
                     "type": "string"
@@ -224,9 +240,7 @@
             "description": "A select input control.",
             "type": "object",
             "properties": {
-                "controlType": {
-                    "const": "select"
-                },
+                "controlType": { "const": "select" },
                 "options": {
                     "description": "Options available to select from the control.",
                     "type": "array",
@@ -284,16 +298,29 @@
             "required": ["label", "options"]
         },
         "text": {
-            "description": "A basic text input control (`<input type=\"text\">`).",
+            "description": "A basic text input control.",
             "type": "object",
             "properties": {
-                "controlType": {
-                    "const": "text"
+                "controlType": { "const": "text" },
+                "placeholder": { "$ref": "#/definitions/form-control-placeholder" }
+            }
+        },
+        "textarea": {
+            "description": "A multiline text input control.",
+            "type": "object",
+            "properties": {
+                "controlType": { "const": "textarea" },
+                "cols": {
+                    "description": "The visible width of the text control, in average character widths.",
+                    "type": "number",
+                    "minimum": 1
                 },
-                "placeholder": {
-                    "description": "Placeholder text for the input.",
-                    "type": "string"
-                }
+                "rows": {
+                    "description": "The number of visible text lines for the control.",
+                    "type": "number",
+                    "minimum": 1
+                },
+                "placeholder": { "$ref": "#/definitions/form-control-placeholder" }
             }
         }
     }

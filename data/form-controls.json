@@ -43,6 +43,13 @@
         },
         {
             "type": "control",
+            "id": "c-number",
+            "controlType": "number",
+            "required": true,
+            "label": "Enter a number:"
+        },
+        {
+            "type": "control",
             "id": "c-phone",
             "controlType": "phone",
             "label": "Phone number",
@@ -79,6 +86,14 @@
             "label": "Enter a value:",
             "required": true,
             "helpText": "Help text goes here",
+            "placeholder": "Placeholder value"
+        },
+        {
+            "type": "control",
+            "id": "c-textarea",
+            "controlType": "textarea",
+            "required": true,
+            "label": "Enter free-form text:",
             "placeholder": "Placeholder value"
         }
     ]

@@ -14,6 +14,17 @@
         <input type="email" [attr.id]="control.id" [attr.placeholder]="$any(control).placeholder" />
     </ng-container>
 
+    <ng-container *ngSwitchCase="'number'">
+        <label [attr.for]="control.id">{{ control.label }}</label>
+        <input
+            type="number"
+            [attr.id]="control.id"
+            [attr.min]="$any(control).min || null"
+            [attr.max]="$any(control).max || null"
+            [attr.step]="$any(control).step || null"
+        />
+    </ng-container>
+
     <ng-container *ngSwitchCase="'phone'">
         <label [attr.for]="control.id">{{ control.label }}</label>
         <input type="tel" [attr.id]="control.id" />
@@ -45,6 +56,15 @@
     <ng-container *ngSwitchCase="'text'">
         <label [attr.for]="control.id">{{ control.label }}</label>
         <input type="text" [attr.id]="control.id" [attr.placeholder]="$any(control).placeholder" />
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'textarea'">
+        <label [attr.for]="control.id">{{ control.label }}</label>
+        <textarea
+            [attr.id]="control.id"
+            [attr.cols]="$any(control).cols || null"
+            [attr.rows]="$any(control).rows || null"
+        ></textarea>
     </ng-container>
 
     <ng-container *ngSwitchDefault>
