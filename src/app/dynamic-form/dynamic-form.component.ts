@@ -16,6 +16,16 @@ export class DynamicFormComponent implements OnInit {
     @Input() metadata!: FormMetadata;
 
     /**
+     * Heading level to assign to top-level section titles. Subsections will
+     * calculate their heading levels from this starting value.
+     *
+     * @example
+     * A `sectionHeadingLevel` of 2 will set top-level section titles to `<h2>`
+     * elements, subsection titles to `<h3>` elements, and so on.
+     */
+    @Input() sectionHeadingLevel: 2 | 3 | 4 | 5 | 6 = 2;
+
+    /**
      * Reactive Forms representation of the form metadata.
      */
     form!: FormGroup;

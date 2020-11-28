@@ -3,7 +3,7 @@
 <form *ngIf="form" [attr.id]="metadata.id" [formGroup]="form" (ngSubmit)="onSubmit()">
     <ng-container *ngFor="let content of metadata?.contents">
         <ng-container *ngIf="isSectionContent(content)">
-            <app-dynamic-form-section [section]="content"></app-dynamic-form-section>
+            <app-dynamic-form-section [section]="content" [depth]="sectionHeadingLevel"></app-dynamic-form-section>
         </ng-container>
 
         <ng-container *ngIf="isQuestionContent(content)">

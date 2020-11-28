@@ -20,7 +20,6 @@
     <button type="submit">Render</button>
 </form>
 
-<!-- <pre *ngIf="metadata"><code>{{ metadata | json }}</code></pre> -->
 <p *ngIf="error" style="color: red">{{ error }}</p>
 
 <app-dynamic-form *ngIf="metadata" [metadata]="metadata"></app-dynamic-form>
