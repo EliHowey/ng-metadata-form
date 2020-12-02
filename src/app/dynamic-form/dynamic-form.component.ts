@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { FormContentMetadata, FormMetadata, FormQuestionMetadata, FormSectionMetadata } from '../model/form';
 import { FormControlMetadata } from '../model/form-controls';
 import { FormMetadataService } from '../services/form-metadata/form-metadata.service';
@@ -9,7 +9,7 @@ import { FormMetadataService } from '../services/form-metadata/form-metadata.ser
     templateUrl: './dynamic-form.component.html',
     styleUrls: ['./dynamic-form.component.scss']
 })
-export class DynamicFormComponent implements OnInit {
+export class DynamicFormComponent implements OnInit, OnChanges {
     /**
      * Metadata used to render the form.
      */
@@ -28,7 +28,7 @@ export class DynamicFormComponent implements OnInit {
     /**
      * Reactive Forms representation of the form metadata.
      */
-    form!: FormGroup;
+    form: FormGroup | null = null;
 
     /**
      * Error message when the form metadata could not be processed.
@@ -43,6 +43,16 @@ export class DynamicFormComponent implements OnInit {
     constructor(private metadataService: FormMetadataService) {}
 
     ngOnInit(): void {
+        this.onMetadataChanged();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.metadata) {
+            this.onMetadataChanged();
+        }
+    }
+
+    onMetadataChanged(): void {
         try {
             this.form = this.metadataService.getFormFromMetadata(this.metadata);
         } catch (error) {
@@ -62,10 +72,18 @@ export class DynamicFormComponent implements OnInit {
         return content.type === 'control';
     }
 
+    getFormGroup(content: FormContentMetadata): FormGroup {
+        return this.form?.get(content.id) as FormGroup;
+    }
+
+    getFormControl(content: FormContentMetadata): FormControl {
+        return this.form?.get(content.id) as FormControl;
+    }
+
     onSubmit(): void {
         if (this.form) {
             this.form.markAllAsTouched();
-            this.payload = this.form.valid ? JSON.stringify(this.form.getRawValue()) : '';
+            this.payload = this.form.getRawValue();
         }
     }
 }

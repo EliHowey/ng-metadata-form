@@ -1,76 +1,116 @@
-<ng-container [ngSwitch]="control.controlType">
-    <ng-container *ngSwitchCase="'checkbox'">
-        <input type="checkbox" [attr.id]="control.id" [attr.checked]="$any(control).checked ? '' : null" />
-        <label [attr.for]="control.id">{{ control.label }}</label>
-    </ng-container>
+<ng-container *ngIf="form && formControl; else initError" [formGroup]="form">
+    <ng-container [ngSwitch]="control.controlType">
+        <ng-container *ngSwitchCase="'checkbox'">
+            <input
+                type="checkbox"
+                [formControlName]="control.id"
+                [attr.id]="control.id"
+                [attr.checked]="$any(control).checked ? '' : null"
+            />
+            <label [attr.for]="control.id">{{ control.label }}</label>
+        </ng-container>
 
-    <ng-container *ngSwitchCase="'date'">
-        <label [attr.for]="control.id">{{ control.label }}</label>
-        <input type="date" [attr.id]="control.id" [attr.min]="$any(control).min" [attr.max]="$any(control).max" />
-    </ng-container>
+        <ng-container *ngSwitchCase="'date'">
+            <label [attr.for]="control.id">{{ control.label }}</label>
+            <input
+                type="date"
+                [formControlName]="control.id"
+                [attr.id]="control.id"
+                [attr.min]="$any(control).min"
+                [attr.max]="$any(control).max"
+            />
+        </ng-container>
 
-    <ng-container *ngSwitchCase="'email'">
-        <label [attr.for]="control.id">{{ control.label }}</label>
-        <input type="email" [attr.id]="control.id" [attr.placeholder]="$any(control).placeholder" />
-    </ng-container>
+        <ng-container *ngSwitchCase="'email'">
+            <label [attr.for]="control.id">{{ control.label }}</label>
+            <input
+                type="email"
+                [formControlName]="control.id"
+                [attr.id]="control.id"
+                [attr.placeholder]="$any(control).placeholder"
+            />
+        </ng-container>
 
-    <ng-container *ngSwitchCase="'number'">
-        <label [attr.for]="control.id">{{ control.label }}</label>
-        <input
-            type="number"
-            [attr.id]="control.id"
-            [attr.min]="$any(control).min || null"
-            [attr.max]="$any(control).max || null"
-            [attr.step]="$any(control).step || null"
-        />
-    </ng-container>
+        <ng-container *ngSwitchCase="'number'">
+            <label [attr.for]="control.id">{{ control.label }}</label>
+            <input
+                type="number"
+                [formControlName]="control.id"
+                [attr.id]="control.id"
+                [attr.min]="$any(control).min || null"
+                [attr.max]="$any(control).max || null"
+                [attr.step]="$any(control).step || null"
+            />
+        </ng-container>
 
-    <ng-container *ngSwitchCase="'phone'">
-        <label [attr.for]="control.id">{{ control.label }}</label>
-        <input type="tel" [attr.id]="control.id" />
-    </ng-container>
+        <ng-container *ngSwitchCase="'phone'">
+            <label [attr.for]="control.id">{{ control.label }}</label>
+            <input type="tel" [formControlName]="control.id" [attr.id]="control.id" />
+        </ng-container>
 
-    <ng-container *ngSwitchCase="'select'">
-        <label [attr.for]="control.id">{{ control.label }}</label>
-        <select [attr.id]="control.id">
-            <ng-container *ngFor="let option of $any(control).options">
-                <!-- String options -->
-                <option *ngIf="!option.options && !option.value">{{ option }}</option>
+        <ng-container *ngSwitchCase="'radio'">
+            <input
+                type="radio"
+                [formControlName]="control.id"
+                [attr.id]="control.id"
+                [attr.name]="control.id"
+                [attr.value]="$any(control).value || control.label"
+            />
+            <label [attr.for]="control.id">{{ control.label }}</label>
+        </ng-container>
 
-                <!-- Options with a different display value -->
-                <option *ngIf="option.value" [attr.value]="option.value">{{ option.label }}</option>
+        <ng-container *ngSwitchCase="'select'">
+            <label [attr.for]="control.id">{{ control.label }}</label>
+            <select [formControlName]="control.id" [attr.id]="control.id">
+                <option value="" selected disabled>Select an option</option>
 
-                <!-- Option groups -->
-                <optgroup *ngIf="option.options" [attr.label]="option.label">
-                    <ng-container *ngFor="let groupOption of $any(option).options">
-                        <option *ngIf="!groupOption.value">{{ groupOption }}</option>
-                        <option *ngIf="groupOption.value" [attr.value]="groupOption.value">
-                            {{ groupOption.label }}
-                        </option>
-                    </ng-container>
-                </optgroup>
-            </ng-container>
-        </select>
-    </ng-container>
+                <ng-container *ngFor="let option of $any(control).options">
+                    <!-- String options -->
+                    <option *ngIf="!option.options && !option.value">{{ option }}</option>
 
-    <ng-container *ngSwitchCase="'text'">
-        <label [attr.for]="control.id">{{ control.label }}</label>
-        <input type="text" [attr.id]="control.id" [attr.placeholder]="$any(control).placeholder" />
-    </ng-container>
+                    <!-- Options with a different display value -->
+                    <option *ngIf="option.value" [attr.value]="option.value">{{ option.label }}</option>
 
-    <ng-container *ngSwitchCase="'textarea'">
-        <label [attr.for]="control.id">{{ control.label }}</label>
-        <textarea
-            [attr.id]="control.id"
-            [attr.cols]="$any(control).cols || null"
-            [attr.rows]="$any(control).rows || null"
-        ></textarea>
-    </ng-container>
+                    <!-- Option groups -->
+                    <optgroup *ngIf="option.options" [attr.label]="option.label">
+                        <ng-container *ngFor="let groupOption of $any(option).options">
+                            <option *ngIf="!groupOption.value">{{ groupOption }}</option>
+                            <option *ngIf="groupOption.value" [attr.value]="groupOption.value">
+                                {{ groupOption.label }}
+                            </option>
+                        </ng-container>
+                    </optgroup>
+                </ng-container>
+            </select>
+        </ng-container>
 
-    <ng-container *ngSwitchDefault>
-        <div class="unknown-control">
-            Unknown control: <code>{{ control.id }}</code>
-            <app-json-display [title]="'Metadata'" [json]="control"></app-json-display>
-        </div>
+        <ng-container *ngSwitchCase="'text'">
+            <label [attr.for]="control.id">{{ control.label }}</label>
+            <input
+                type="text"
+                [formControlName]="control.id"
+                [attr.id]="control.id"
+                [attr.placeholder]="$any(control).placeholder"
+            />
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'textarea'">
+            <label [attr.for]="control.id">{{ control.label }}</label>
+            <textarea
+                [formControlName]="control.id"
+                [attr.id]="control.id"
+                [attr.cols]="$any(control).cols || null"
+                [attr.rows]="$any(control).rows || null"
+            ></textarea>
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>
+            <div class="unknown-control">
+                Unknown control: <code>{{ control.id }}</code>
+                <app-json-display [title]="'Metadata'" [json]="control"></app-json-display>
+            </div>
+        </ng-container>
     </ng-container>
 </ng-container>
+
+<ng-template #initError>Error: Unable to initialize form control</ng-template>

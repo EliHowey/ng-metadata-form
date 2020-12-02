@@ -32,7 +32,7 @@ export interface AbstractFormControlMetadata {
     /**
      * Initial value of the control.
      */
-    initialValue?: string;
+    initialValue?: string | number | boolean;
 }
 
 export type FormControlMetadata = { type: 'control' } & (

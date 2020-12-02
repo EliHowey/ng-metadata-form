@@ -4,8 +4,7 @@
         {
             "type": "question",
             "id": "q-name",
-            "questionText": "What is your name?",
-            "required": true,
+            "questionText": "Name",
             "controls": [
                 {
                     "id": "q-name--c-first-name",
@@ -23,6 +22,31 @@
                     "controlType": "text",
                     "label": "Last name",
                     "required": true
+                }
+            ]
+        },
+        {
+            "type": "question",
+            "id": "q-gender",
+            "questionText": "Gender",
+            "controls": [
+                {
+                    "id": "q-gender--c-female",
+                    "controlType": "radio",
+                    "label": "Female",
+                    "value": "female"
+                },
+                {
+                    "id": "q-gender--c-male",
+                    "controlType": "radio",
+                    "label": "Male",
+                    "value": "male"
+                },
+                {
+                    "id": "q-gender--c-other",
+                    "controlType": "radio",
+                    "label": "Other",
+                    "value": "other"
                 }
             ]
         }

@@ -128,7 +128,7 @@
                 },
                 "initialValue": {
                     "description": "Initial value of the control.",
-                    "type": "string"
+                    "oneOf": [{ "type": "string" }, { "type": "number" }, { "type": "boolean" }]
                 }
             },
             "required": ["id", "controlType", "label"],
@@ -154,6 +154,7 @@
             "type": "object",
             "properties": {
                 "controlType": { "const": "checkbox" },
+                "initialValue": { "type": "boolean" },
                 "checked": {
                     "description": "Whether the checkbox is checked by default.",
                     "type": "boolean"
@@ -185,6 +186,7 @@
             "properties": {
                 "controlType": { "const": "email" },
                 "initialValue": {
+                    "type": "string",
                     "examples": ["email@example.com"]
                 },
                 "placeholder": {
@@ -198,6 +200,7 @@
             "type": "object",
             "properties": {
                 "controlType": { "const": "number" },
+                "initialValue": { "type": "number" },
                 "min": {
                     "description": "Minimum value the input will accept.",
                     "type": "number"
@@ -217,7 +220,8 @@
             "description": "A phone input control.",
             "type": "object",
             "properties": {
-                "controlType": { "const": "phone" }
+                "controlType": { "const": "phone" },
+                "initialValue": { "type": "string" }
             }
         },
         "radio": {
@@ -225,22 +229,23 @@
             "type": "object",
             "properties": {
                 "controlType": { "const": "radio" },
+                "initialValue": { "type": "string" },
                 "value": {
-                    "description": "Value of the radio option.",
+                    "description": "Value of the radio option. If a value is not given, the label text will be used as a value.",
                     "type": "string"
                 },
                 "checked": {
                     "description": "Whether the radio option is selected by default.",
                     "type": "boolean"
                 }
-            },
-            "required": ["value"]
+            }
         },
         "select": {
             "description": "A select input control.",
             "type": "object",
             "properties": {
                 "controlType": { "const": "select" },
+                "initialValue": { "type": "string" },
                 "options": {
                     "description": "Options available to select from the control.",
                     "type": "array",
@@ -302,6 +307,7 @@
             "type": "object",
             "properties": {
                 "controlType": { "const": "text" },
+                "initialValue": { "type": "string" },
                 "placeholder": { "$ref": "#/definitions/form-control-placeholder" }
             }
         },
@@ -310,6 +316,7 @@
             "type": "object",
             "properties": {
                 "controlType": { "const": "textarea" },
+                "initialValue": { "type": "string" },
                 "cols": {
                     "description": "The visible width of the text control, in average character widths.",
                     "type": "number",

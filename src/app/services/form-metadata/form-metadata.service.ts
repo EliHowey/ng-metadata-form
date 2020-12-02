@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { FormControlMetadata } from 'src/app/model/form-controls';
+import { FormControlMetadata, isControlOfType } from 'src/app/model/form-controls';
 import FORM_METADATA_SCHEMA from '../../../../schemas/form-metadata.schema.json';
 import {
     formContentIsType,
@@ -73,32 +73,34 @@ export class FormMetadataService {
         return new FormGroup(group);
     }
 
-    private processFormQuestionMetadata(question: FormQuestionMetadata): FormGroup | FormControl {
+    private processFormQuestionMetadata(question: FormQuestionMetadata): FormGroup {
         if (!question.id) {
             throw new FormMetadataError(FormMetadataErrors.FM005);
-        } else if (!question.controls || question.controls.length === 0) {
+        } else if (!question.controls || question.controls.length < 2) {
             throw new FormMetadataError(FormMetadataErrors.FM006);
         }
 
-        if (question.controls.length === 1) {
-            return this.processFormControlMetadata(question.controls[0]);
-        } else {
-            const group: any = {};
+        const group: any = {};
 
-            for (const control of question.controls) {
-                if (!control.id) {
-                    throw new FormMetadataError(FormMetadataErrors.FM007);
-                }
-
-                group[control.id] = this.processFormControlMetadata(control);
+        for (const control of question.controls) {
+            if (!control.id) {
+                throw new FormMetadataError(FormMetadataErrors.FM007);
             }
 
-            return new FormGroup(group);
+            group[control.id] = this.processFormControlMetadata(control);
         }
+
+        return new FormGroup(group);
     }
 
     private processFormControlMetadata(control: FormControlMetadata): FormControl {
-        const formControl = new FormControl(control.initialValue || '');
+        let initialValue: string | boolean | number | undefined = control.initialValue;
+
+        if (isControlOfType(control, 'checkbox') && control.checked) {
+            initialValue = true;
+        }
+
+        const formControl = new FormControl(initialValue || '');
         formControl.setValidators(this.getControlValidators(control));
 
         return formControl;
@@ -130,7 +132,7 @@ const enum FormMetadataErrors {
     FM003 = 'Form section has no ID',
     FM004 = 'Form section has no contents',
     FM005 = 'Form question has no ID',
-    FM006 = 'Form question has no controls',
+    FM006 = 'Form question must have at least two controls',
     FM007 = 'Form control has no ID',
     FM008 = 'Form contents have an invalid type'
 }

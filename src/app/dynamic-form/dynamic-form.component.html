@@ -11,7 +11,9 @@
         </ng-container>
 
         <ng-container *ngIf="isControlContent(content)">
-            <app-dynamic-form-control [control]="content"></app-dynamic-form-control>
+            <app-dynamic-form-control [form]="form" [control]="content"></app-dynamic-form-control>
         </ng-container>
     </ng-container>
+
+    <app-json-display *ngIf="form" title="Responses" [json]="form?.getRawValue()" [expanded]="true"></app-json-display>
 </form>
