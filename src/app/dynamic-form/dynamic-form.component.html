@@ -15,5 +15,5 @@
         </ng-container>
     </ng-container>
 
-    <app-json-display *ngIf="form" title="Responses" [json]="form?.getRawValue()" [expanded]="true"></app-json-display>
+    <app-json-display title="Responses" [json]="form!.getRawValue()" [expanded]="true"></app-json-display>
 </form>

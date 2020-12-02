@@ -1,12 +1,7 @@
-<fieldset *ngIf="question.controls.length > 1">
+<fieldset *ngIf="form">
     <legend>{{ question.questionText }}</legend>
 
     <ng-container *ngFor="let control of question.controls">
-        <app-dynamic-form-control [control]="control"></app-dynamic-form-control>
+        <app-dynamic-form-control [form]="form" [control]="control"></app-dynamic-form-control>
     </ng-container>
 </fieldset>
-
-<ng-container *ngIf="question.controls.length === 1">
-    <p>{{ question.questionText }}</p>
-    <app-dynamic-form-control [control]="question.controls[0]"></app-dynamic-form-control>
-</ng-container>
