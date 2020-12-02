@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { FormContentMetadata, FormMetadata, FormQuestionMetadata, FormSectionMetadata } from '../model/form';
-import { FormControlMetadata } from '../model/form-controls';
+import { FormContentMetadata, FormMetadata } from '../model/form';
 import { FormMetadataService } from '../services/form-metadata/form-metadata.service';
 
 @Component({
@@ -40,7 +39,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
      */
     payload = '';
 
-    constructor(private metadataService: FormMetadataService) {}
+    constructor(public metadataService: FormMetadataService) {}
 
     ngOnInit(): void {
         this.onMetadataChanged();
@@ -58,18 +57,6 @@ export class DynamicFormComponent implements OnInit, OnChanges {
         } catch (error) {
             this.error = error;
         }
-    }
-
-    isSectionContent(content: FormContentMetadata): content is FormSectionMetadata {
-        return content.type === 'section';
-    }
-
-    isQuestionContent(content: FormContentMetadata): content is FormQuestionMetadata {
-        return content.type === 'question';
-    }
-
-    isControlContent(content: FormContentMetadata): content is FormControlMetadata {
-        return content.type === 'control';
     }
 
     getFormGroup(content: FormContentMetadata): FormGroup {

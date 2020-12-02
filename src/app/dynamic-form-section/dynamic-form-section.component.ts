@@ -1,14 +1,17 @@
-import { Component, HostBinding, Input } from '@angular/core';
-import { FormContentMetadata, FormQuestionMetadata, FormSectionMetadata } from '../model/form';
-import { FormControlMetadata } from '../model/form-controls';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { ControlContainer, FormGroup } from '@angular/forms';
+import { FormSectionMetadata } from '../model/form';
+import { FormMetadataService } from '../services/form-metadata/form-metadata.service';
 
 @Component({
     selector: 'app-dynamic-form-section',
     templateUrl: './dynamic-form-section.component.html',
     styleUrls: ['./dynamic-form-section.component.scss']
 })
-export class DynamicFormSectionComponent {
+export class DynamicFormSectionComponent implements OnInit {
     @Input() section!: FormSectionMetadata;
+
+    @Input() form!: FormGroup;
 
     @Input() depth = 1;
 
@@ -17,15 +20,15 @@ export class DynamicFormSectionComponent {
         return this.section.id;
     }
 
-    isSectionContent(content: FormContentMetadata): content is FormSectionMetadata {
-        return content.type === 'section';
-    }
+    constructor(private controlContainer: ControlContainer, public metadataService: FormMetadataService) {}
 
-    isQuestionContent(content: FormContentMetadata): content is FormQuestionMetadata {
-        return content.type === 'question';
-    }
+    ngOnInit(): void {
+        this.form = this.controlContainer.control as FormGroup;
 
-    isControlContent(content: FormContentMetadata): content is FormControlMetadata {
-        return content.type === 'control';
+        if (this.form) {
+            console.log(this.form);
+        } else {
+            console.error(`Form section ${this.section.id} has no FormGroup`);
+        }
     }
 }

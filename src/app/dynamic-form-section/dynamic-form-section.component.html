@@ -7,15 +7,16 @@
 </ng-container>
 
 <ng-container *ngFor="let content of section.contents">
-    <ng-container *ngIf="isSectionContent(content)">
-        <app-dynamic-form-section [section]="content" [depth]="depth + 1"></app-dynamic-form-section>
-    </ng-container>
+    <app-dynamic-form-section
+        *ngIf="metadataService.isSection(content)"
+        [section]="content"
+        [depth]="depth + 1"
+    ></app-dynamic-form-section>
 
-    <ng-container *ngIf="isQuestionContent(content)">
-        <app-dynamic-form-question [question]="content"></app-dynamic-form-question>
-    </ng-container>
+    <app-dynamic-form-question
+        *ngIf="metadataService.isQuestion(content)"
+        [question]="content"
+    ></app-dynamic-form-question>
 
-    <ng-container *ngIf="isControlContent(content)">
-        <app-dynamic-form-control [control]="content"></app-dynamic-form-control>
-    </ng-container>
+    <app-dynamic-form-control *ngIf="metadataService.isControl(content)" [control]="content"></app-dynamic-form-control>
 </ng-container>
