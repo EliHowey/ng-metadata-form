@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
 import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-form-question.component';
@@ -19,7 +18,7 @@ import { JsonDisplayComponent } from './json-display/json-display.component';
         DynamicFormControlComponent,
         JsonDisplayComponent
     ],
-    imports: [AppRoutingModule, BrowserModule, CommonModule, ReactiveFormsModule],
+    imports: [BrowserModule, CommonModule, ReactiveFormsModule],
     providers: [],
     bootstrap: [AppComponent]
 })
