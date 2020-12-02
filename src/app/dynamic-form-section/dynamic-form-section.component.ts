@@ -11,8 +11,6 @@ import { FormMetadataService } from '../services/form-metadata/form-metadata.ser
 export class DynamicFormSectionComponent implements OnInit {
     @Input() section!: FormSectionMetadata;
 
-    @Input() form!: FormGroup;
-
     @Input() depth = 1;
 
     @HostBinding('attr.id')
@@ -20,15 +18,11 @@ export class DynamicFormSectionComponent implements OnInit {
         return this.section.id;
     }
 
+    form: FormGroup | null = null;
+
     constructor(private controlContainer: ControlContainer, public metadataService: FormMetadataService) {}
 
     ngOnInit(): void {
-        this.form = this.controlContainer.control as FormGroup;
-
-        if (this.form) {
-            console.log(this.form);
-        } else {
-            console.error(`Form section ${this.section.id} has no FormGroup`);
-        }
+        this.form = this.controlContainer.control?.get(this.id) as FormGroup;
     }
 }
