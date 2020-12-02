@@ -27,26 +27,43 @@
         },
         {
             "type": "question",
-            "id": "q-gender",
-            "questionText": "Gender",
+            "id": "q-address",
+            "questionText": "Address",
+            "required": true,
             "controls": [
                 {
-                    "id": "q-gender--c-female",
-                    "controlType": "radio",
-                    "label": "Female",
-                    "value": "female"
+                    "controlType": "text",
+                    "id": "q-address--line-1",
+                    "label": "Address line 1",
+                    "required": true,
+                    "placeholder": "123 Anywhere Street"
                 },
                 {
-                    "id": "q-gender--c-male",
-                    "controlType": "radio",
-                    "label": "Male",
-                    "value": "male"
+                    "controlType": "text",
+                    "id": "q-address--line-2",
+                    "label": "Address line 2",
+                    "placeholder": "Apt. C"
                 },
                 {
-                    "id": "q-gender--c-other",
-                    "controlType": "radio",
-                    "label": "Other",
-                    "value": "other"
+                    "controlType": "text",
+                    "id": "q-address--city",
+                    "label": "City",
+                    "required": true,
+                    "placeholder": "Anytown"
+                },
+                {
+                    "controlType": "select",
+                    "id": "q-address--state",
+                    "label": "State",
+                    "required": true,
+                    "options": ["Alabama (AL)", "Alaska (AK)", "Arizona (AZ)", "..."]
+                },
+                {
+                    "controlType": "text",
+                    "id": "q-address--zip",
+                    "label": "ZIP",
+                    "required": true,
+                    "placeholder": "55555"
                 }
             ]
         }

@@ -39,5 +39,9 @@ export class DynamicFormControlComponent implements OnInit {
         if (!this.formControl) {
             throw new Error(`Control ${this.control.id} has no associated FormControl`);
         }
+
+        if (this.control.controlType === 'radio-group') {
+            console.log(this.formControl);
+        }
     }
 }

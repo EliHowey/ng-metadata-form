@@ -1,4 +1,13 @@
-type FormControlType = 'checkbox' | 'date' | 'email' | 'number' | 'phone' | 'radio' | 'select' | 'text' | 'textarea';
+type FormControlType =
+    | 'checkbox'
+    | 'date'
+    | 'email'
+    | 'number'
+    | 'phone'
+    | 'radio-group'
+    | 'select'
+    | 'text'
+    | 'textarea';
 
 /**
  * Metadata required to render Angular form controls dynamically.
@@ -40,7 +49,7 @@ export type FormControlMetadata = { type: 'control' } & (
     | DateControlMetadata
     | EmailControlMetadata
     | PhoneControlMetadata
-    | RadioControlMetadata
+    | RadioGroupControlMetadata
     | SelectControlMetadata
     | TextControlMetadata
 );
@@ -124,20 +133,15 @@ export interface PhoneControlMetadata extends AbstractFormControlMetadata {
 }
 
 /**
- * A radio input control.
+ * A group of radio input controls.
  */
-export interface RadioControlMetadata extends AbstractFormControlMetadata {
-    controlType: 'radio';
+export interface RadioGroupControlMetadata extends AbstractFormControlMetadata {
+    controlType: 'radio-group';
 
     /**
-     * Value of the radio option.
+     * Options available to select from the radio group.
      */
-    value: string;
-
-    /**
-     * Whether the radio option is selected by default.
-     */
-    checked?: string;
+    options: (string | OptionMetadata)[];
 }
 
 /**
@@ -149,18 +153,13 @@ export interface SelectControlMetadata extends AbstractFormControlMetadata {
     /**
      * Options available to select from the control.
      */
-    options: (SelectOption | OptGroup)[];
+    options: (string | OptionMetadata | OptGroup)[];
 }
 
 /**
- * An option for a select control.
+ * An option for a radio group or select control.
  */
-type SelectOption = string | Option;
-
-/**
- * An option for a select control.
- */
-interface Option {
+export interface OptionMetadata {
     /**
      * Text content of the option.
      */
@@ -194,7 +193,7 @@ interface OptGroup {
     /**
      * Options within the option group.
      */
-    options: SelectOption;
+    options: string | OptionMetadata;
 
     /**
      * Whether the option group is disabled.
@@ -226,17 +225,4 @@ export interface TextareaControlMetadata extends AbstractFormControlMetadata {
      * Placeholder text for the input.
      */
     placeholder?: string;
-}
-
-export function isControlOfType(c: AbstractFormControlMetadata, type: 'checkbox'): c is CheckboxControlMetadata;
-export function isControlOfType(c: AbstractFormControlMetadata, type: 'date'): c is DateControlMetadata;
-export function isControlOfType(c: AbstractFormControlMetadata, type: 'email'): c is EmailControlMetadata;
-export function isControlOfType(c: AbstractFormControlMetadata, type: 'number'): c is NumberControlMetadata;
-export function isControlOfType(c: AbstractFormControlMetadata, type: 'phone'): c is PhoneControlMetadata;
-export function isControlOfType(c: AbstractFormControlMetadata, type: 'radio'): c is RadioControlMetadata;
-export function isControlOfType(c: AbstractFormControlMetadata, type: 'select'): c is SelectControlMetadata;
-export function isControlOfType(c: AbstractFormControlMetadata, type: 'text'): c is TextControlMetadata;
-export function isControlOfType(c: AbstractFormControlMetadata, type: 'textarea'): c is TextareaControlMetadata;
-export function isControlOfType(c: AbstractFormControlMetadata, type: FormControlType): boolean {
-    return c.controlType === type;
 }

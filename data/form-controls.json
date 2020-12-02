@@ -57,6 +57,30 @@
         },
         {
             "type": "control",
+            "id": "c-radio-group",
+            "controlType": "radio-group",
+            "label": "Radio group",
+            "required": true,
+            "options": [
+                "String option",
+                {
+                    "label": "Option label 1",
+                    "value": "option-value-1"
+                },
+                {
+                    "label": "Option (selected by default)",
+                    "value": "option-value-2",
+                    "selected": true
+                },
+                {
+                    "label": "Option (disabled)",
+                    "value": "option-value-3",
+                    "disabled": true
+                }
+            ]
+        },
+        {
+            "type": "control",
             "id": "c-select",
             "controlType": "select",
             "label": "Select control",

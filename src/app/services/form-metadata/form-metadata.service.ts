@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { FormControlMetadata, isControlOfType } from 'src/app/model/form-controls';
 import FORM_METADATA_SCHEMA from '../../../../schemas/form-metadata.schema.json';
 import {
     formContentIsType,
@@ -9,6 +8,7 @@ import {
     FormQuestionMetadata,
     FormSectionMetadata
 } from '../../model/form';
+import { FormControlMetadata, OptionMetadata, RadioGroupControlMetadata } from '../../model/form-controls';
 import { AjvService } from '../ajv/ajv.service';
 
 @Injectable({
@@ -96,14 +96,23 @@ export class FormMetadataService {
     private processFormControlMetadata(control: FormControlMetadata): FormControl {
         let initialValue: string | boolean | number | undefined = control.initialValue;
 
-        if (isControlOfType(control, 'checkbox') && control.checked) {
+        if (control.controlType === 'checkbox' && control.checked) {
             initialValue = true;
+        }
+
+        if (control.controlType === 'radio-group') {
+            const selectedOption = control.options.filter(this.isOptionMetadata).find((option) => option.selected);
+            initialValue = selectedOption?.value || selectedOption?.label;
         }
 
         const formControl = new FormControl(initialValue || '');
         formControl.setValidators(this.getControlValidators(control));
 
         return formControl;
+    }
+
+    private isOptionMetadata(option: RadioGroupControlMetadata['options'][number]): option is OptionMetadata {
+        return typeof option !== 'string';
     }
 
     private getControlValidators(control: FormControlMetadata): ValidatorFn[] {

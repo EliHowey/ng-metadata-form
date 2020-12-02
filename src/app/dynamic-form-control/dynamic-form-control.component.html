@@ -58,6 +58,19 @@
         <label [attr.for]="control.id">{{ control.label }}</label>
     </ng-container>
 
+    <fieldset *ngSwitchCase="'radio-group'">
+        <legend>{{ control.label }}</legend>
+        <div *ngFor="let option of $any(control).options; index as i">
+            <input
+                type="radio"
+                [formControlName]="control.id"
+                [attr.id]="control.id + '-option-' + i"
+                [value]="$any(option).value || option.label || option"
+            />
+            <label [attr.for]="control.id + '-option-' + i">{{ option.label || option }}</label>
+        </div>
+    </fieldset>
+
     <ng-container *ngSwitchCase="'select'">
         <label [attr.for]="control.id">{{ control.label }}</label>
         <select [formControlName]="control.id" [attr.id]="control.id">

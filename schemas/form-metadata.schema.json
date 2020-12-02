@@ -138,7 +138,7 @@
                 { "$ref": "#/definitions/email" },
                 { "$ref": "#/definitions/number" },
                 { "$ref": "#/definitions/phone" },
-                { "$ref": "#/definitions/radio" },
+                { "$ref": "#/definitions/radio-group" },
                 { "$ref": "#/definitions/select" },
                 { "$ref": "#/definitions/text" },
                 { "$ref": "#/definitions/textarea" }
@@ -224,19 +224,18 @@
                 "initialValue": { "type": "string" }
             }
         },
-        "radio": {
-            "description": "A radio input control.",
+        "radio-group": {
+            "description": "A group of radio input controls.",
             "type": "object",
             "properties": {
-                "controlType": { "const": "radio" },
+                "controlType": { "const": "radio-group" },
                 "initialValue": { "type": "string" },
-                "value": {
-                    "description": "Value of the radio option. If a value is not given, the label text will be used as a value.",
-                    "type": "string"
-                },
-                "checked": {
-                    "description": "Whether the radio option is selected by default.",
-                    "type": "boolean"
+                "options": {
+                    "description": "Options available to select from the radio group.",
+                    "type": "array",
+                    "items": {
+                        "oneOf": [{ "type": "string" }, { "$ref": "#/definitions/option" }]
+                    }
                 }
             }
         },
