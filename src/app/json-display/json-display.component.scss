@@ -1,25 +1,25 @@
 :host {
     display: block;
+
+    background-color: var(--color-background-code);
+    color: var(--color-foreground-code);
 }
 
 summary {
     position: relative;
     padding: 0.5em;
 
-    background-color: var(--json-display-background, #e3e3e6);
-    color: var(--json-display-text, black);
-
     &::after {
         content: 'JSON';
 
         position: absolute;
-        right: 0.5em;
+        right: 1em;
 
         padding: 0.1em 0.25em;
         border: thin solid;
         border-radius: 4px;
 
-        font-size: 0.75em;
+        font-size: var(--font-size-small);
     }
 }
 
@@ -27,9 +27,6 @@ summary {
     max-width: 100%;
     overflow-inline: auto;
     padding: 1rem;
-
-    background-color: #18181a;
-    color: #d4d4d7;
 }
 
 pre {

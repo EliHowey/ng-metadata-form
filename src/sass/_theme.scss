@@ -1,0 +1,74 @@
+// ============================================================================
+// Theme
+// ============================================================================
+
+$color-gray-lightest: #fafafa;
+$color-gray-light: #c3c4c5;
+$color-gray-dark: #676869;
+$color-gray-darker: #1c2326;
+$color-gray-darkest: #1a2023;
+
+$color-accent-light: #2b68cd;
+$color-accent-dark: #db045d;
+
+$color-error: #ea0303;
+
+:root {
+    --font-stack-base: system, -apple-system, BlinkMacSystemFont, 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica,
+        Ubuntu, Roboto, Noto, 'Segoe UI', Arial, sans-serif;
+    --font-stack-mono: 'Fira Code VF', 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+        monospace;
+    --font-size-small: 0.875rem;
+
+    --color-background: #{$color-gray-lightest};
+    --color-foreground: #{$color-gray-darker};
+
+    --color-background-code: #263238;
+    --color-foreground-code: #{$color-gray-lightest};
+
+    --color-accent: #{$color-accent-light};
+    --color-on-accent: #{$color-gray-lightest};
+
+    --color-label: #{$color-gray-dark};
+    --color-error: #{$color-error};
+
+    --focus-ring-outer: #{rgba($color-accent-light, 0.25)};
+    --focus-ring-inner: #{$color-accent-light};
+
+    --focus-ring-error-outer: #{rgba($color-error, 0.25)};
+    --focus-ring-error-inner: #{$color-error};
+}
+
+[data-theme='dark'] {
+    --color-background: #{$color-gray-darker};
+    --color-foreground: #{$color-gray-lightest};
+    --color-accent: #{$color-accent-dark};
+    --color-label: #{$color-gray-light};
+
+    --focus-ring-outer: var(--color-foreground);
+    --focus-ring-inner: var(--color-background);
+
+    // TODO: Test contrast against background
+    --focus-ring-error-outer: #{$color-error};
+    --focus-ring-error-inner: var(--color-background);
+}
+
+// ----------------------------------------------------------------------------
+// Theme Toggle
+//
+// When the theme is toggled, we add the `.theme-switching` class to the
+// document to force a smooth transition of all colors on the page. Once the
+// transition ends, we remove the class so it doesn't affect other page
+// transitions.
+//
+// If the user prefers not to see page-wide animations, we disable the effect.
+// ----------------------------------------------------------------------------
+
+.theme-switching * {
+    transition-property: background-color, border-color, box-shadow, color !important;
+    transition-duration: 300ms !important;
+
+    @media screen and (prefers-reduced-motion: reduce) {
+        transition-duration: 0.01ms !important;
+    }
+}

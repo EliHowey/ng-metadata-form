@@ -1,49 +1,9 @@
 @import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@4/distr/fira_code.css);
 
-@import './variables';
 @import './mixins';
 @import './resets';
-
-// ============================================================================
-// Theme
-// ============================================================================
-
-:root {
-    --font-stack-base: system, -apple-system, BlinkMacSystemFont, 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica,
-        Ubuntu, Roboto, Noto, 'Segoe UI', Arial, sans-serif;
-    --font-stack-mono: 'Fira Code VF', 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
-        monospace;
-    --font-size-small: 0.875rem;
-
-    --color-background: #fafafa;
-    --color-foreground: black;
-
-    --color-accent: #{$color-accent};
-    --color-on-accent: white;
-
-    --focus-ring-outer: #{rgba($color-accent, 0.5)};
-    --focus-ring-inner: #{$color-accent};
-}
-
-[data-theme='dark'] {
-    --color-background: #263238;
-    --color-foreground: #fafafa;
-    --color-accent: #db045d;
-
-    --focus-ring-outer: var(--color-foreground);
-    --focus-ring-inner: var(--color-background);
-}
-
-// Set by theme toggle to change theme colors smoothly for all page elements
-.theme-switching * {
-    transition-property: background-color, border-color, box-shadow, color !important;
-    transition-duration: 300ms !important;
-
-    // ...except when the user prefers not to see page-wide animations
-    @media screen and (prefers-reduced-motion: reduce) {
-        transition-duration: 0.01ms !important;
-    }
-}
+@import './theme';
+@import './form-controls';
 
 // ============================================================================
 // Base Styles
