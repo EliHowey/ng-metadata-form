@@ -2,22 +2,32 @@
     <fieldset>
         <legend>Examples</legend>
 
-        <input type="radio" formControlName="type" id="render-controls" value="controls" />
-        <label for="render-controls">Form controls</label>
+        <div>
+            <input type="radio" name="type" formControlName="type" id="render-controls" value="controls" />
+            <label for="render-controls">Form controls</label>
+        </div>
 
-        <input type="radio" formControlName="type" id="render-question" value="question" />
-        <label for="render-question">Form question</label>
+        <div>
+            <input type="radio" name="type" formControlName="type" id="render-question" value="question" />
+            <label for="render-question">Form question</label>
+        </div>
 
-        <input type="radio" formControlName="type" id="render-section" value="section" />
-        <label for="render-section">Form section</label>
+        <div>
+            <input type="radio" name="type" formControlName="type" id="render-section" value="section" />
+            <label for="render-section">Form section</label>
+        </div>
 
-        <input type="radio" formControlName="type" id="render-mixed" value="mixed" />
-        <label for="render-mixed">Mixed contents</label>
+        <div>
+            <input type="radio" name="type" formControlName="type" id="render-mixed" value="mixed" />
+            <label for="render-mixed">Mixed contents</label>
+        </div>
     </fieldset>
 
     <button type="submit">Render</button>
 </form>
 
-<p *ngIf="error" style="color: red">{{ error }}</p>
+<div>
+    <app-dynamic-form *ngIf="metadata" [metadata]="metadata" (submitted)="this.formValue = $event"></app-dynamic-form>
 
-<app-dynamic-form *ngIf="metadata" [metadata]="metadata"></app-dynamic-form>
+    <app-json-display title="Responses" [json]="formValue" [expanded]="true"></app-json-display>
+</div>

@@ -116,12 +116,7 @@
         ></textarea>
     </ng-container>
 
-    <ng-container *ngSwitchDefault>
-        <div class="unknown-control">
-            Unknown control: <code>{{ control.id }}</code>
-            <app-json-display [title]="'Metadata'" [json]="control"></app-json-display>
-        </div>
-    </ng-container>
+    <ng-container *ngSwitchDefault>Unknown control type: {{ control.controlType }}</ng-container>
 
     <div *ngIf="invalid" class="error-message" [attr.id]="errorMessageId">Error</div>
 </ng-container>

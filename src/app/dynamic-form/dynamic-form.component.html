@@ -1,5 +1,3 @@
-<app-json-display [title]="'Form Metadata'" [json]="metadata"></app-json-display>
-
 <form *ngIf="form" [attr.id]="metadata.id" [formGroup]="form" (ngSubmit)="onSubmit()">
     <ng-container *ngFor="let content of metadata?.contents">
         <app-dynamic-form-section
@@ -21,6 +19,4 @@
     </ng-container>
 
     <button type="submit">Submit</button>
-
-    <app-json-display title="Responses" [json]="form!.getRawValue()" [expanded]="true"></app-json-display>
 </form>

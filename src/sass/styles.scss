@@ -1,0 +1,60 @@
+@import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@4/distr/fira_code.css);
+
+@import './variables';
+@import './mixins';
+@import './resets';
+
+:root {
+    --font-stack-base: system, -apple-system, BlinkMacSystemFont, 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica,
+        Ubuntu, Roboto, Noto, 'Segoe UI', Arial, sans-serif;
+    --font-stack-mono: 'Fira Code VF', 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+        monospace;
+    --font-size-small: 0.875rem;
+
+    --color-background: #fafafa;
+    --color-foreground: black;
+
+    --color-accent: #{$color-accent};
+    --color-on-accent: white;
+
+    --focus-ring-outer: #{rgba($color-accent, 0.5)};
+    --focus-ring-inner: #{$color-accent};
+
+    @media screen and (prefers-color-scheme: dark) {
+        --color-background: #263238;
+        --color-foreground: #fafafa;
+        --color-accent: #db045d;
+    }
+}
+
+*:focus {
+    @include focus-ring;
+}
+
+html {
+    font-family: var(--font-stack-base);
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+}
+
+header,
+main {
+    padding: 1rem;
+}
+
+button {
+    appearance: none;
+    padding: 0.5em 1em;
+    border: none;
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+}
+
+pre,
+code {
+    font-family: var(--font-stack-mono);
+    font-weight: 450; // Fira Code Retina
+}

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormContentMetadata, FormMetadata } from '../model/form';
 import { FormMetadataService } from '../services/form-metadata/form-metadata.service';
@@ -29,15 +29,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
      */
     form: FormGroup | null = null;
 
-    /**
-     * Error message when the form metadata could not be processed.
-     */
-    error = '';
-
-    /**
-     * Submitted form data.
-     */
-    payload = '';
+    @Output() submitted = new EventEmitter();
 
     constructor(public metadataService: FormMetadataService) {}
 
@@ -55,7 +47,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
         try {
             this.form = this.metadataService.getFormFromMetadata(this.metadata);
         } catch (error) {
-            this.error = error;
+            console.error(error);
         }
     }
 
@@ -70,7 +62,10 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     onSubmit(): void {
         if (this.form) {
             this.form.markAllAsTouched();
-            this.payload = this.form.getRawValue();
+
+            if (this.form.valid) {
+                this.submitted.emit(this.form.getRawValue());
+            }
         }
     }
 }
