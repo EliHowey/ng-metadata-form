@@ -7,7 +7,8 @@
             "id": "c-checkbox",
             "controlType": "checkbox",
             "required": true,
-            "label": "Unchecked by default"
+            "label": "Unchecked by default",
+            "helpText": "Help text"
         },
         {
             "type": "control",
@@ -15,6 +16,7 @@
             "controlType": "checkbox",
             "required": true,
             "label": "Checked by default",
+            "helpText": "Help text",
             "checked": true
         },
         {
@@ -22,6 +24,7 @@
             "id": "c-date",
             "controlType": "date",
             "label": "Enter a date",
+            "helpText": "Help text",
             "required": true
         },
         {
@@ -29,6 +32,7 @@
             "id": "c-date-restricted",
             "controlType": "date",
             "label": "Choose a date in the allowed range",
+            "helpText": "Help text",
             "required": true,
             "min": "2020-10-25",
             "max": "2020-11-25"
@@ -39,6 +43,7 @@
             "controlType": "email",
             "required": true,
             "label": "Email address",
+            "helpText": "Help text",
             "placeholder": "email@example.com"
         },
         {
@@ -46,13 +51,15 @@
             "id": "c-number",
             "controlType": "number",
             "required": true,
-            "label": "Enter a number:"
+            "label": "Enter a number:",
+            "helpText": "Help text"
         },
         {
             "type": "control",
             "id": "c-phone",
             "controlType": "phone",
             "label": "Phone number",
+            "helpText": "Help text",
             "required": true
         },
         {
@@ -60,6 +67,7 @@
             "id": "c-radio-group",
             "controlType": "radio-group",
             "label": "Radio group",
+            "helpText": "Help text",
             "required": true,
             "options": [
                 "String option",
@@ -71,11 +79,6 @@
                     "label": "Option (selected by default)",
                     "value": "option-value-2",
                     "selected": true
-                },
-                {
-                    "label": "Option (disabled)",
-                    "value": "option-value-3",
-                    "disabled": true
                 }
             ]
         },
@@ -84,6 +87,7 @@
             "id": "c-select",
             "controlType": "select",
             "label": "Select control",
+            "helpText": "Help text",
             "required": true,
             "options": [
                 "String option",
@@ -108,8 +112,8 @@
             "id": "c-text",
             "controlType": "text",
             "label": "Enter a value:",
-            "required": true,
             "helpText": "Help text goes here",
+            "required": true,
             "placeholder": "Placeholder value"
         },
         {
@@ -118,6 +122,7 @@
             "controlType": "textarea",
             "required": true,
             "label": "Enter free-form text:",
+            "helpText": "Help text",
             "placeholder": "Placeholder value"
         }
     ]

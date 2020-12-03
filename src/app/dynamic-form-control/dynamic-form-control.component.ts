@@ -23,25 +23,33 @@ export class DynamicFormControlComponent implements OnInit {
         return this.control.id;
     }
 
+    get helpTextId(): string {
+        return this.controlId + '-help-text';
+    }
+
+    get errorMessageId(): string {
+        return this.controlId + '-error';
+    }
+
     /**
      * Type of the control to render.
      */
     @HostBinding('attr.data-control-type')
     get type(): string {
-        return this.control.type;
+        return this.control.controlType;
     }
 
     formControl: FormControl | null = null;
+
+    get invalid(): boolean | undefined {
+        return (this.formControl?.touched || this.formControl?.dirty) && this.formControl.invalid;
+    }
 
     ngOnInit(): void {
         this.formControl = this.form.get(this.controlId) as FormControl;
 
         if (!this.formControl) {
             throw new Error(`Control ${this.control.id} has no associated FormControl`);
-        }
-
-        if (this.control.controlType === 'radio-group') {
-            console.log(this.formControl);
         }
     }
 }
