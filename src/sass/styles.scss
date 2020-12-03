@@ -4,6 +4,10 @@
 @import './mixins';
 @import './resets';
 
+// ============================================================================
+// Theme
+// ============================================================================
+
 :root {
     --font-stack-base: system, -apple-system, BlinkMacSystemFont, 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica,
         Ubuntu, Roboto, Noto, 'Segoe UI', Arial, sans-serif;
@@ -19,13 +23,31 @@
 
     --focus-ring-outer: #{rgba($color-accent, 0.5)};
     --focus-ring-inner: #{$color-accent};
+}
 
-    @media screen and (prefers-color-scheme: dark) {
-        --color-background: #263238;
-        --color-foreground: #fafafa;
-        --color-accent: #db045d;
+[data-theme='dark'] {
+    --color-background: #263238;
+    --color-foreground: #fafafa;
+    --color-accent: #db045d;
+
+    --focus-ring-outer: var(--color-foreground);
+    --focus-ring-inner: var(--color-background);
+}
+
+// Set by theme toggle to change theme colors smoothly for all page elements
+.theme-switching * {
+    transition-property: background-color, border-color, box-shadow, color !important;
+    transition-duration: 300ms !important;
+
+    // ...except when the user prefers not to see page-wide animations
+    @media screen and (prefers-reduced-motion: reduce) {
+        transition-duration: 0.01ms !important;
     }
 }
+
+// ============================================================================
+// Base Styles
+// ============================================================================
 
 *:focus {
     @include focus-ring;
@@ -42,7 +64,14 @@ body {
 
 header,
 main {
-    padding: 1rem;
+    padding: 2rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 button {
