@@ -1,18 +1,18 @@
 <form *ngIf="form" [attr.id]="metadata.id" [formGroup]="form" (ngSubmit)="onSubmit()">
     <ng-container *ngFor="let content of metadata?.contents">
         <lib-dynamic-form-section
-            *ngIf="metadataService.isSection(content)"
+            *ngIf="content | isContentType: 'section'"
             [section]="content"
             [depth]="sectionHeadingLevel"
         ></lib-dynamic-form-section>
 
         <lib-dynamic-form-question
-            *ngIf="metadataService.isQuestion(content)"
+            *ngIf="content | isContentType: 'question'"
             [question]="content"
         ></lib-dynamic-form-question>
 
         <lib-dynamic-form-control
-            *ngIf="metadataService.isControl(content)"
+            *ngIf="content | isContentType: 'control'"
             [form]="form"
             [control]="content"
         ></lib-dynamic-form-control>

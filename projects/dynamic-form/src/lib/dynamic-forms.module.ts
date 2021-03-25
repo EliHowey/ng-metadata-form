@@ -7,6 +7,7 @@ import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-fo
 import { DynamicFormSectionComponent } from './dynamic-form-section/dynamic-form-section.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { FormMetadataService } from './form-metadata.service';
+import { IsContentTypePipe } from './pipes/is-content-type.pipe';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { FormMetadataService } from './form-metadata.service';
         DynamicFormControlComponent,
         DynamicFormControlPropertiesDirective,
         DynamicFormQuestionComponent,
-        DynamicFormSectionComponent
+        DynamicFormSectionComponent,
+        IsContentTypePipe
     ],
     imports: [CommonModule, FormsModule, ReactiveFormsModule],
     exports: [

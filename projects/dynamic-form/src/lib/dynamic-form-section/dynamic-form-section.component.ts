@@ -1,7 +1,6 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormGroup } from '@angular/forms';
 import { FormSectionMetadata } from '../form-metadata.models';
-import { FormMetadataService } from '../form-metadata.service';
 
 @Component({
     selector: 'lib-dynamic-form-section',
@@ -20,7 +19,7 @@ export class DynamicFormSectionComponent implements OnInit {
 
     form: FormGroup | null = null;
 
-    constructor(private controlContainer: ControlContainer, public metadataService: FormMetadataService) {}
+    constructor(private controlContainer: ControlContainer) {}
 
     ngOnInit(): void {
         this.form = this.controlContainer.control?.get(this.id) as FormGroup;

@@ -1,14 +1,13 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormContentMetadata, FormMetadata } from '../form-metadata.models';
-import { FormMetadataService } from '../form-metadata.service';
 
 @Component({
     selector: 'lib-dynamic-form',
     templateUrl: './dynamic-form.component.html',
     styleUrls: ['./dynamic-form.component.scss']
 })
-export class DynamicFormComponent implements OnInit, OnChanges {
+export class DynamicFormComponent {
     /**
      * Metadata used to render the form.
      */
@@ -30,26 +29,6 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     form: FormGroup | null = null;
 
     @Output() submitted = new EventEmitter();
-
-    constructor(public metadataService: FormMetadataService) {}
-
-    ngOnInit(): void {
-        this.onMetadataChanged();
-    }
-
-    ngOnChanges(changes: SimpleChanges): void {
-        if (changes.metadata) {
-            this.onMetadataChanged();
-        }
-    }
-
-    onMetadataChanged(): void {
-        try {
-            this.form = this.metadataService.getFormFromMetadata(this.metadata);
-        } catch (error) {
-            console.error(error);
-        }
-    }
 
     getFormGroup(content: FormContentMetadata): FormGroup {
         return this.form?.get(content.id) as FormGroup;
