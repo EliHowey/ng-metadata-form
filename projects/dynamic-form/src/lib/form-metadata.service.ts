@@ -116,18 +116,6 @@ export class FormMetadataService {
 
         return validators;
     }
-
-    isSection(content: FormContentMetadata): content is FormSectionMetadata {
-        return content.type === 'section';
-    }
-
-    isQuestion(content: FormContentMetadata): content is FormQuestionMetadata {
-        return content.type === 'question';
-    }
-
-    isControl(content: FormContentMetadata): content is FormControlMetadata {
-        return content.type === 'control';
-    }
 }
 
 class FormMetadataError extends Error {
