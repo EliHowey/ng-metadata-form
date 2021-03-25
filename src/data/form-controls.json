@@ -1,6 +1,6 @@
 {
-    "$schema": "../schemas/form-metadata.schema.json",
-    "id": "all-controls",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "id": "form-controls",
     "contents": [
         {
             "type": "control",

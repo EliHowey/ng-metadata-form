@@ -1,5 +1,6 @@
 {
-    "$schema": "../schemas/form-metadata.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "id": "form-question",
     "contents": [
         {
             "type": "question",
