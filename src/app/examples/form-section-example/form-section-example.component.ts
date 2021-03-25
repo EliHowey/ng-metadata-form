@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import FormSectionMetadata from '../../../../data/form-section.json';
 import { FormMetadata } from '../../../../projects/dynamic-form/src/lib/form-metadata.models';
+import FormSectionMetadata from '../../../data/form-section.json';
 import { AjvService } from '../../services/ajv/ajv.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import FormControlsMetadata from '../../../../data/form-controls.json';
 import { FormMetadata } from '../../../../projects/dynamic-form/src/lib/form-metadata.models';
+import FormControlsMetadata from '../../../data/form-controls.json';
 import { AjvService } from '../../services/ajv/ajv.service';
 
 @Component({

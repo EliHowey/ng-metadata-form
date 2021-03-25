@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import MixedContentsMetadata from '../../../../data/mixed-contents.json';
 import { FormMetadata } from '../../../../projects/dynamic-form/src/lib/form-metadata.models';
+import MixedContentsMetadata from '../../../data/mixed-contents.json';
 import { AjvService } from '../../services/ajv/ajv.service';
 
 @Component({
