@@ -1,0 +1,8 @@
+:host {
+    display: block;
+    padding-bottom: 1rem;
+
+    &[data-control-type='checkbox'] {
+        display: flex;
+    }
+}
