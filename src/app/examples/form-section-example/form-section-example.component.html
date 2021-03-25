@@ -1,0 +1,3 @@
+<lib-dynamic-form *ngIf="metadata" [metadata]="metadata" (submitted)="formValue = $event"></lib-dynamic-form>
+
+<app-json-display *ngIf="formValue" title="Responses" [json]="formValue" [expanded]="true"></app-json-display>

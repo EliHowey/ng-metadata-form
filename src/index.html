@@ -3,14 +3,47 @@
     <head>
         <meta charset="utf-8" />
         <title>JSON Forms | Eli Howey</title>
-        <base href="/" />
+        <meta name="description" content="HTML forms created dynamically from JSON metadata" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <base href="/" />
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@4/distr/fira_code.css" />
     </head>
 
     <body>
+        <header>
+            <h1>JSON Forms</h1>
+
+            <button id="theme-toggle">Toggle theme</button>
+            <script>
+                const themeToggle = document.getElementById('theme-toggle');
+                const currentTheme = localStorage.getItem('theme');
+
+                if (currentTheme) {
+                    document.documentElement.dataset.theme = currentTheme;
+                } else {
+                    const theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+                    document.documentElement.dataset.theme = theme;
+                    localStorage.setItem('theme', theme);
+                }
+
+                function switchTheme() {
+                    document.documentElement.classList.add('theme-switching');
+                    document.documentElement.addEventListener('transitionend', () => {
+                        document.documentElement.classList.remove('theme-switching');
+                    });
+
+                    const theme = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
+                    localStorage.setItem('theme', theme);
+                    document.documentElement.setAttribute('data-theme', theme);
+                }
+
+                themeToggle.addEventListener('click', switchTheme);
+            </script>
+        </header>
+
         <app-root></app-root>
     </body>
 </html>

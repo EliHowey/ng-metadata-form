@@ -4,11 +4,11 @@ import { FormMetadata } from '../../../../projects/dynamic-form/src/lib/form-met
 import { AjvService } from '../../services/ajv/ajv.service';
 
 @Component({
-    selector: 'app-form-controls',
-    templateUrl: './form-controls.component.html',
-    styleUrls: ['./form-controls.component.scss']
+    selector: 'app-form-controls-example',
+    templateUrl: './form-controls-example.component.html',
+    styleUrls: ['./form-controls-example.component.scss']
 })
-export class FormControlsComponent implements OnInit {
+export class FormControlsExampleComponent implements OnInit {
     metadata: FormMetadata | null = null;
 
     formValue: any;

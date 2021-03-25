@@ -1,36 +1,10 @@
-<header>
-    <h1>JSON Forms</h1>
-    <a [routerLink]="'/examples/form-controls'">Form Controls</a>
-
-    <button id="theme-toggle">Toggle theme</button>
-    <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const currentTheme = localStorage.getItem('theme');
-
-        if (currentTheme) {
-            document.documentElement.dataset.theme = currentTheme;
-        } else {
-            const theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-            document.documentElement.dataset.theme = theme;
-            localStorage.setItem('theme', theme);
-        }
-
-        function switchTheme() {
-            document.documentElement.classList.add('theme-switching');
-            document.documentElement.addEventListener('transitionend', () => {
-                document.documentElement.classList.remove('theme-switching');
-            });
-
-            const theme = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('theme', theme);
-            document.documentElement.setAttribute('data-theme', theme);
-        }
-
-        themeToggle.addEventListener('click', switchTheme);
-    </script>
-</header>
-
 <main>
+    <nav>
+        <a [routerLink]="'/examples/form-controls'">Form Controls</a>
+        <a [routerLink]="'/examples/form-question'">Form Question</a>
+        <a [routerLink]="'/examples/form-section'">Form Section</a>
+        <a [routerLink]="'/examples/mixed-contents'">Mixed Contents</a>
+    </nav>
+
     <router-outlet></router-outlet>
 </main>

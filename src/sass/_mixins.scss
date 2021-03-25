@@ -2,5 +2,10 @@
     & {
         outline: none;
         box-shadow: 0 0 0 1px var(--focus-ring-inner), 0 0 0 4px var(--focus-ring-outer);
+
+        @media screen and (-ms-high-contrast: active) {
+            outline: auto;
+            outline-color: transparent;
+        }
     }
 }
