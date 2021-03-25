@@ -1,0 +1,14 @@
+{
+    "$id": "http://example.com/schemas/properties/id.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "definitions": {
+        "id": {
+            "title": "ID",
+            "description": "A unique ID for the form control. IDs may contain alphanumeric characters, hyphens, and/or underscores.",
+            "type": "string",
+            "pattern": "^[A-Za-z0-9\\-_]+$"
+        }
+    }
+}

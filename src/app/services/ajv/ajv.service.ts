@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import Ajv, { AnySchemaObject } from 'ajv';
+import { ALL_SCHEMAS, ENTRY_SCHEMA } from 'src/app/schemas/schemas.token';
 
 @Injectable({
     providedIn: 'root'
@@ -7,12 +8,15 @@ import Ajv, { AnySchemaObject } from 'ajv';
 export class AjvService {
     private ajv: Ajv;
 
-    constructor() {
-        this.ajv = new Ajv({ allErrors: true, allowUnionTypes: true });
+    constructor(
+        @Inject(ALL_SCHEMAS) allSchemas: AnySchemaObject[],
+        @Inject(ENTRY_SCHEMA) private entrySchema: AnySchemaObject
+    ) {
+        this.ajv = new Ajv({ allErrors: true, allowUnionTypes: true, schemas: allSchemas });
     }
 
-    validate<T>(schema: AnySchemaObject, data: any): T {
-        const isValid = this.ajv.validate(schema, data as T);
+    validate<T>(data: any): T {
+        const isValid = this.ajv.validate(this.entrySchema, data as T);
 
         if (!isValid) {
             const errorMessages = this.ajv.errorsText();

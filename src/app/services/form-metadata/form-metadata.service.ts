@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import FORM_METADATA_SCHEMA from '../../../../schemas/form-metadata.schema.json';
 import {
     formContentIsType,
     FormContentMetadata,
@@ -18,7 +17,7 @@ export class FormMetadataService {
     constructor(private parser: AjvService) {}
 
     getMetadata(data: any): FormMetadata {
-        return this.parser.validate(FORM_METADATA_SCHEMA, data);
+        return this.parser.validate(data);
     }
 
     getFormFromMetadata(metadata: FormMetadata): FormGroup {

@@ -1,0 +1,235 @@
+{
+    "$id": "http://example.com/schemas/form-control.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "additionalProperties": false,
+    "definitions": {
+        "FormControl": {
+            "description": "Metadata required to render Angular form controls dynamically.",
+            "type": "object",
+            "properties": {
+                "type": { "const": "control" },
+                "id": {
+                    "$ref": "./properties/id.schema.json#/definitions/id"
+                },
+                "controlType": {
+                    "description": "Type of the control.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label for the control.",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "helpText": {
+                    "description": "Help text for the control.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether the user is required to provide a value in the control.",
+                    "type": "boolean"
+                },
+                "initialValue": {
+                    "description": "Initial value of the control.",
+                    "oneOf": [{ "type": "string" }, { "type": "number" }, { "type": "boolean" }]
+                }
+            },
+            "required": ["id", "controlType", "label"],
+            "oneOf": [
+                { "$ref": "#/definitions/checkbox" },
+                { "$ref": "#/definitions/date" },
+                { "$ref": "#/definitions/email" },
+                { "$ref": "#/definitions/number" },
+                { "$ref": "#/definitions/phone" },
+                { "$ref": "#/definitions/radio-group" },
+                { "$ref": "#/definitions/select" },
+                { "$ref": "#/definitions/text" },
+                { "$ref": "#/definitions/textarea" }
+            ]
+        },
+        "form-control-placeholder": {
+            "description": "Placeholder text for the input.",
+            "type": "string",
+            "minLength": 1
+        },
+        "checkbox": {
+            "description": "A checkbox input control.",
+            "type": "object",
+            "properties": {
+                "controlType": { "const": "checkbox" },
+                "initialValue": { "type": "boolean" },
+                "checked": {
+                    "description": "Whether the checkbox is checked by default.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "date": {
+            "description": "A date input control.",
+            "type": "object",
+            "properties": {
+                "controlType": { "const": "date" },
+                "initialValue": {
+                    "type": "string",
+                    "examples": ["2020-11-25"]
+                },
+                "min": {
+                    "description": "ISO date string for the earliest allowed date.",
+                    "examples": ["2020-10-25"]
+                },
+                "max": {
+                    "description": "ISO date string for the latest allowed date.",
+                    "examples": ["2020-11-25"]
+                }
+            }
+        },
+        "email": {
+            "description": "An email input control.",
+            "type": "object",
+            "properties": {
+                "controlType": { "const": "email" },
+                "initialValue": {
+                    "type": "string",
+                    "examples": ["email@example.com"]
+                },
+                "placeholder": {
+                    "$ref": "#/definitions/form-control-placeholder",
+                    "examples": ["email@example.com"]
+                }
+            }
+        },
+        "number": {
+            "description": "A numeric input control.",
+            "type": "object",
+            "properties": {
+                "controlType": { "const": "number" },
+                "initialValue": { "type": "number" },
+                "min": {
+                    "description": "Minimum value the input will accept.",
+                    "type": "number"
+                },
+                "max": {
+                    "description": "Maximum value the input will accept.",
+                    "type": "number"
+                },
+                "step": {
+                    "description": "The input will only accept values that are a multiple of this value.",
+                    "type": "number"
+                },
+                "placeholder": { "$ref": "#/definitions/form-control-placeholder" }
+            }
+        },
+        "phone": {
+            "description": "A phone input control.",
+            "type": "object",
+            "properties": {
+                "controlType": { "const": "phone" },
+                "initialValue": { "type": "string" }
+            }
+        },
+        "radio-group": {
+            "description": "A group of radio input controls.",
+            "type": "object",
+            "properties": {
+                "controlType": { "const": "radio-group" },
+                "initialValue": { "type": "string" },
+                "options": {
+                    "description": "Options available to select from the radio group.",
+                    "type": "array",
+                    "items": {
+                        "oneOf": [{ "type": "string" }, { "$ref": "#/definitions/option" }]
+                    }
+                }
+            }
+        },
+        "select": {
+            "description": "A select input control.",
+            "type": "object",
+            "properties": {
+                "controlType": { "const": "select" },
+                "initialValue": { "type": "string" },
+                "options": {
+                    "description": "Options available to select from the control.",
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            { "type": "string" },
+                            { "$ref": "#/definitions/option" },
+                            { "$ref": "#/definitions/optgroup" }
+                        ]
+                    }
+                }
+            }
+        },
+        "option": {
+            "description": "An option for a select control.",
+            "type": "object",
+            "properties": {
+                "label": {
+                    "description": "Text content of the option.",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "Value of the option. If omitted, `label` will be used as the value.",
+                    "type": "string"
+                },
+                "selected": {
+                    "description": "Whether the option is selected by default.",
+                    "type": "boolean"
+                },
+                "disabled": {
+                    "description": "Whether the option is disabled by default.",
+                    "type": "boolean"
+                }
+            },
+            "required": ["label"]
+        },
+        "optgroup": {
+            "description": "A group of related options within a select control.",
+            "type": "object",
+            "properties": {
+                "label": {
+                    "description": "Text content of the option group.",
+                    "type": "string"
+                },
+                "options": {
+                    "description": "Options within the option group.",
+                    "type": ["string", "object"],
+                    "oneOf": [{ "type": "string" }, { "$ref": "#/definitions/option" }]
+                },
+                "disabled": {
+                    "description": "Whether the option group is disabled.",
+                    "type": "boolean"
+                }
+            },
+            "required": ["label", "options"]
+        },
+        "text": {
+            "description": "A basic text input control.",
+            "type": "object",
+            "properties": {
+                "controlType": { "const": "text" },
+                "initialValue": { "type": "string" },
+                "placeholder": { "$ref": "#/definitions/form-control-placeholder" }
+            }
+        },
+        "textarea": {
+            "description": "A multiline text input control.",
+            "type": "object",
+            "properties": {
+                "controlType": { "const": "textarea" },
+                "initialValue": { "type": "string" },
+                "cols": {
+                    "description": "The visible width of the text control, in average character widths.",
+                    "type": "number",
+                    "minimum": 1
+                },
+                "rows": {
+                    "description": "The number of visible text lines for the control.",
+                    "type": "number",
+                    "minimum": 1
+                },
+                "placeholder": { "$ref": "#/definitions/form-control-placeholder" }
+            }
+        }
+    }
+}

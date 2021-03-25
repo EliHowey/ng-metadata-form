@@ -9,6 +9,7 @@ import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-fo
 import { DynamicFormSectionComponent } from './dynamic-form-section/dynamic-form-section.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { JsonDisplayComponent } from './json-display/json-display.component';
+import { SchemasModule } from './schemas/schemas.module';
 
 @NgModule({
     declarations: [
@@ -20,8 +21,7 @@ import { JsonDisplayComponent } from './json-display/json-display.component';
         JsonDisplayComponent,
         FormControlPropertiesDirective
     ],
-    imports: [BrowserModule, CommonModule, ReactiveFormsModule],
-    providers: [],
+    imports: [BrowserModule, CommonModule, ReactiveFormsModule, SchemasModule],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
