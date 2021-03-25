@@ -11,39 +11,6 @@
     </head>
 
     <body>
-        <header>
-            <h1>JSON Forms</h1>
-            <button id="theme-toggle">Toggle theme</button>
-
-            <script>
-                const themeToggle = document.getElementById('theme-toggle');
-                const currentTheme = localStorage.getItem('theme');
-
-                if (currentTheme) {
-                    document.documentElement.dataset.theme = currentTheme;
-                } else {
-                    const theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-                    document.documentElement.dataset.theme = theme;
-                    localStorage.setItem('theme', theme);
-                }
-
-                function switchTheme() {
-                    document.documentElement.classList.add('theme-switching');
-                    document.documentElement.addEventListener('transitionend', () => {
-                        document.documentElement.classList.remove('theme-switching');
-                    });
-
-                    const theme = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
-                    localStorage.setItem('theme', theme);
-                    document.documentElement.setAttribute('data-theme', theme);
-                }
-
-                themeToggle.addEventListener('click', switchTheme);
-            </script>
-        </header>
-        <main>
-            <app-root></app-root>
-        </main>
+        <app-root></app-root>
     </body>
 </html>

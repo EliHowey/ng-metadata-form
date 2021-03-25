@@ -1,33 +1,36 @@
-<form [formGroup]="renderForm" (ngSubmit)="onChangeRender()">
-    <fieldset>
-        <legend>Examples</legend>
+<header>
+    <h1>JSON Forms</h1>
+    <a [routerLink]="'/examples/form-controls'">Form Controls</a>
 
-        <div>
-            <input type="radio" name="type" formControlName="type" id="render-controls" value="controls" />
-            <label for="render-controls">Form controls</label>
-        </div>
+    <button id="theme-toggle">Toggle theme</button>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme');
 
-        <div>
-            <input type="radio" name="type" formControlName="type" id="render-question" value="question" />
-            <label for="render-question">Form question</label>
-        </div>
+        if (currentTheme) {
+            document.documentElement.dataset.theme = currentTheme;
+        } else {
+            const theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-        <div>
-            <input type="radio" name="type" formControlName="type" id="render-section" value="section" />
-            <label for="render-section">Form section</label>
-        </div>
+            document.documentElement.dataset.theme = theme;
+            localStorage.setItem('theme', theme);
+        }
 
-        <div>
-            <input type="radio" name="type" formControlName="type" id="render-mixed" value="mixed" />
-            <label for="render-mixed">Mixed contents</label>
-        </div>
-    </fieldset>
+        function switchTheme() {
+            document.documentElement.classList.add('theme-switching');
+            document.documentElement.addEventListener('transitionend', () => {
+                document.documentElement.classList.remove('theme-switching');
+            });
 
-    <button type="submit">Render</button>
-</form>
+            const theme = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', theme);
+            document.documentElement.setAttribute('data-theme', theme);
+        }
 
-<div>
-    <app-dynamic-form *ngIf="metadata" [metadata]="metadata" (submitted)="this.formValue = $event"></app-dynamic-form>
+        themeToggle.addEventListener('click', switchTheme);
+    </script>
+</header>
 
-    <app-json-display title="Responses" [json]="formValue" [expanded]="true"></app-json-display>
-</div>
+<main>
+    <router-outlet></router-outlet>
+</main>

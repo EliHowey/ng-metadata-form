@@ -1,9 +1,0 @@
-<fieldset *ngIf="form">
-    <legend>{{ question.questionText }}</legend>
-
-    <app-dynamic-form-control
-        *ngFor="let control of question.controls"
-        [form]="form"
-        [control]="control"
-    ></app-dynamic-form-control>
-</fieldset>
