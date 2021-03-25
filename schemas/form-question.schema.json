@@ -5,7 +5,7 @@
     "additionalProperties": false,
     "definitions": {
         "FormQuestion": {
-            "title": "Form Section",
+            "title": "Form Question",
             "description": "A question within a dynamic Angular form.",
             "type": "object",
             "properties": {
@@ -25,8 +25,9 @@
                 },
                 "controls": {
                     "description": "Form controls for the question.",
+                    "$comment": "Form questions are rendered as a <fieldset> element. The <fieldset> should only be used when there are two or more controls within it, so the Form Question requires at least two controls.",
                     "type": "array",
-                    "minItems": 1,
+                    "minItems": 2,
                     "items": { "$ref": "./form-control.schema.json#/definitions/FormControl" }
                 }
             },
